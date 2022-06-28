@@ -4,7 +4,7 @@ import { Button, Form, Input, Row } from 'antd';
 export const FullContainer = styled(Row)`
   width: 100%;
   height: 100vh;
-  
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -26,7 +26,6 @@ export const LoginContainer = styled(Row)`
 
 export const FormStyled = styled(Form)`
   width: 60%;
-  
 `;
 
 export const InputLogin = styled(Input)`

@@ -1,7 +1,15 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React from 'react';
 import { Checkbox, Form } from 'antd';
 import { DebtPayLogo } from '../../assets/DebtPayLogo';
-import { ButtonLogin, FormStyled, FullContainer, InputLogin, LinkCadastro, LoginContainer } from './styles';
+import {
+  ButtonLogin,
+  FormStyled,
+  FullContainer,
+  InputLogin,
+  LinkCadastro,
+  LoginContainer,
+} from './styles';
 
 export default function Login() {
   return (
@@ -14,8 +22,8 @@ export default function Login() {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           initialValues={{ remember: true }}
-          onFinish={() => { }}
-          onFinishFailed={() => { }}
+          onFinish={() => {}}
+          onFinishFailed={() => {}}
           autoComplete="off"
         >
           <Form.Item
@@ -28,7 +36,7 @@ export default function Login() {
               },
             ]}
           >
-            <InputLogin style={{marginBottom: "2.5rem"}} />
+            <InputLogin style={{ marginBottom: '2.5rem' }} />
           </Form.Item>
 
           <Form.Item
@@ -52,17 +60,12 @@ export default function Login() {
             <Checkbox> Remember me</Checkbox>
           </Form.Item>
 
-          <Form.Item
-            wrapperCol={{ offset: 8, span: 16 }}
-          >
-            <ButtonLogin htmlType="submit">
-              Entrar
-            </ButtonLogin>
+          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+            <ButtonLogin htmlType="submit">Entrar</ButtonLogin>
           </Form.Item>
         </FormStyled>
 
         <LinkCadastro href="#">Cadastre-se</LinkCadastro>
-
       </LoginContainer>
     </FullContainer>
   );
