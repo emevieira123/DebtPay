@@ -1,34 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Este é um projeto [Next.js](https://nextjs.org/) inicializado com [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Rodando o Projeto
 
-First, run the development server:
+Primeiro, instale as dependencia e execute o servidor de desenvolvimento:
 
 ```bash
-npm run dev
+npm install && npm run dev
 # or
-yarn dev
+yarn && yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) em seu navegador para ver o resultado.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## ESLint & Prettier
+Dentro dos pacotes do projeto, existem arquivos de configurações para o VSCode com o objetivo de padronizar a escrita de código dentro do projeto. Para isso, são necessário so seguintes plugins no VSCode:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+- ESLint
+- EditorConfig for VS Code
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Os arquivos `.eslintrc.js`, `.eslintrc.json` e `.editorconfig` possuem configurações pré-estabelecidas para o VSCode, para que ao encontrar erros de padrões de código, ele tenta corrigir ao usar `cmd+s` para salvar as alterações.
+Caso ainda existam erros, ele irá informar na própria linha quais são eles.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Sobre o Projeto
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+O layout do projeto pode ser conferido no [FIGMA](https://www.figma.com/file/EmEco4Z1XclqFHEv4C5iG1/DebtPay?node-id=113%3A631)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+A documentação do backend pode ser acessada em [DOCS](http://localhost:3000/)
 
-## Deploy on Vercel
+Este é um projeto pessoal que foi desenvolvido com o intuito de
+criar uma forma onde eu pudesse administrar algumas dívidas de
+forma mais organizada.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Tecnologias usadas para o desenvolvimento
+- NextJS
+- Ant Designer
+- React Query
+- Styled-Compenents
+- React-Toastify
+- Banco de dados MySQL
+- Backend em NodeJS disponivel em [GitHub](https://github.com/emevieira123)
+- Swagger para documentar o backend
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Funcionalidades do projeto
+- Cadastro de usuários
+- Login
+- Cadastro das dividas e parcelas
+- checagem das dividas pagas e pendentes
+
+

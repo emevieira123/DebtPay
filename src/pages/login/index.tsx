@@ -65,7 +65,7 @@ export default function Login() {
           </Form.Item>
         </FormStyled>
 
-        <LinkCadastro href="#">Cadastre-se</LinkCadastro>
+        <LinkCadastro href="/registration">Cadastre-se</LinkCadastro>
       </LoginContainer>
     </FullContainer>
   );
