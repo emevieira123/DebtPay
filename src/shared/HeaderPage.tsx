@@ -6,6 +6,9 @@ import styled from 'styled-components';
 import { DebtPayLogo } from '../assets/DebtPayLogo';
 import { LogoutIcon } from '../assets/LogoutIcon';
 
+// '367'
+// '90'
+
 export function HeaderPage() {
   return (
     <Container>
@@ -14,7 +17,7 @@ export function HeaderPage() {
         <UserName>Geovani Junior</UserName>
       </ContainerUser>
       <ContainerLogo>
-        <DebtPayLogo width="55%" height="55%" />
+        <DebtPayLogo width="200" height="60" />
       </ContainerLogo>
       <ContainerLogout>
         <IconButton icon={<LogoutIcon />} />
