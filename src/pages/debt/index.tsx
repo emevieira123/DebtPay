@@ -1,10 +1,25 @@
+import { useState } from 'react';
 import { HeaderPage } from '../../shared/HeaderPage';
 import { CardDebtPrevious } from './components/CardDebtPrevious';
 import { CardDebtRecent } from './components/CardDebtRecent';
+import { CardInfoParcelasDrawer } from './components/drawer/CardInfoParcelasDrawer';
+import { DrawerDebts } from './components/drawer/DrawerDebts';
+import { InfoDebtDrawer } from './components/drawer/InfoDebtDrawer';
+import { InfoParcelasDrawer } from './components/drawer/InfoParcelasDrawer';
 import { FooterDebt } from './components/FooterDebt';
 import { AddButton, ContainerCardDebtRecent, Container } from './styles';
+import { DebtMock } from './__mocks__/Debt.mock';
+
+const onChange = (checked) => {
+  console.log(`switch to ${checked}`);
+};
 
 export default function Debt() {
+  const [visible, setVisible] = useState(false);
+
+  function handleCloseDrawerDebt() {
+    setVisible(false);
+  }
   return (
     <>
       <HeaderPage />
@@ -13,9 +28,9 @@ export default function Debt() {
         <AddButton>+</AddButton>
 
         <ContainerCardDebtRecent>
-          <CardDebtRecent />
-          <CardDebtRecent />
-          <CardDebtRecent />
+          <CardDebtRecent onClick={() => setVisible(true)} />
+          <CardDebtRecent onClick={() => setVisible(true)} />
+          <CardDebtRecent onClick={() => setVisible(true)} />
         </ContainerCardDebtRecent>
       </Container>
 
@@ -35,6 +50,36 @@ export default function Debt() {
       <Container>
         <FooterDebt />
       </Container>
+
+      <DrawerDebts
+        visible={visible}
+        onClose={handleCloseDrawerDebt}
+        title="Informações da divida"
+        width="60vw"
+      >
+        <InfoDebtDrawer
+          cobrador={DebtMock.debtName}
+          produto={DebtMock.product}
+          valorTotal={DebtMock.valorTotal}
+          valorParcela={DebtMock.valorParcela}
+          diaVencimento={DebtMock.diaVencimento}
+          parcelasPagas={DebtMock.parcelasPagas}
+          totalParcelas={DebtMock.parcelasTotais}
+        />
+        <InfoParcelasDrawer />
+        {DebtMock.parcelas.map((item) => {
+          return (
+            <CardInfoParcelasDrawer
+              key={item.numberParcela}
+              numeroParcela={item.numberParcela}
+              valorParcela={item.valorParcela}
+              diaVencimento={item.diaVencimento}
+              status={item.status}
+              onClick={onChange}
+            />
+          );
+        })}
+      </DrawerDebts>
     </>
   );
 }

@@ -4,9 +4,13 @@ import { MoneyIcon } from '../../../assets/MoneyIcon';
 import { StyledDados } from '../styles';
 import { CardRecentContent } from './CardRecentContent';
 
-export function CardDebtRecent() {
+interface CardDebtRecentProps {
+  onClick: () => void;
+}
+
+export function CardDebtRecent({ onClick }: CardDebtRecentProps) {
   return (
-    <CardContainer>
+    <CardContainer onClick={onClick}>
       <StyledDados>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
           <CardRecentContent title="Nome:" content="Provi Financiamento" />
