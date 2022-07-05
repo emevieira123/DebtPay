@@ -28,7 +28,7 @@ export const FormStyled = styled(Form)`
   width: 60%;
 `;
 
-export const InputLogin = styled(Input)`
+export const InputLogin = styled.input`
   width: 100%;
   height: 2.5rem;
   background-color: var(--grey-300);

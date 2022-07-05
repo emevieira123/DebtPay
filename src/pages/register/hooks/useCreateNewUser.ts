@@ -7,7 +7,7 @@ import createNewUser from '../queries/createNewUser';
 export default function useCreateNewUser(onSuccess: () => void) {
   return useMutation(createNewUser, {
     onSuccess() {
-      queryClient.invalidateQueries(URLS.NEW_USER);
+      queryClient.invalidateQueries(URLS.USERS);
 
       onSuccess();
     },

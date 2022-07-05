@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
 import { HeaderPage } from '../../shared/HeaderPage';
 import { CardDebtPrevious } from './components/CardDebtPrevious';
 import { CardDebtRecent } from './components/CardDebtRecent';
@@ -15,6 +16,7 @@ const onChange = (checked) => {
 };
 
 export default function Debt() {
+  const { user } = useContext(AuthContext);
   const [visible, setVisible] = useState(false);
 
   function handleCloseDrawerDebt() {
@@ -22,7 +24,7 @@ export default function Debt() {
   }
   return (
     <>
-      <HeaderPage />
+      <HeaderPage username={user?.name} />
       <Container>
         <h1>Dividas Recentes</h1>
         <AddButton>+</AddButton>

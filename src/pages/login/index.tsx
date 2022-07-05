@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React from 'react';
+import React, { useContext } from 'react';
 import { Checkbox, Form } from 'antd';
 import { DebtPayLogo } from '../../assets/DebtPayLogo';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   ButtonLogin,
   FormStyled,
@@ -10,8 +13,21 @@ import {
   LinkCadastro,
   LoginContainer,
 } from './styles';
+import { AuthContext } from '../../contexts/AuthContext';
+import { useForm } from 'react-hook-form';
 
 export default function Login() {
+  const { register, handleSubmit } = useForm();
+  const { signIn } = useContext(AuthContext);
+
+  async function handleSignIn(data) {
+    try {
+      await signIn(data);
+    } catch (e) {
+      toast.error('Erro: E-mail ou Senha Inválidos!');
+    }
+  }
+
   return (
     <FullContainer>
       <LoginContainer>
@@ -22,13 +38,13 @@ export default function Login() {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           initialValues={{ remember: true }}
-          onFinish={() => {}}
+          onFinish={handleSubmit(handleSignIn)}
           onFinishFailed={() => {}}
           autoComplete="off"
         >
           <Form.Item
             label="Email"
-            name="email"
+            // name="email"
             rules={[
               {
                 required: true,
@@ -36,12 +52,18 @@ export default function Login() {
               },
             ]}
           >
-            <InputLogin style={{ marginBottom: '2.5rem' }} />
+            <InputLogin
+              type="text"
+              id="email"
+              name="email"
+              {...register('email')}
+              style={{ marginBottom: '2.5rem' }}
+            />
           </Form.Item>
 
           <Form.Item
             label="Password"
-            name="password"
+            // name="password"
             rules={[
               {
                 required: true,
@@ -49,7 +71,12 @@ export default function Login() {
               },
             ]}
           >
-            <InputLogin type="password" />
+            <InputLogin
+              type="password"
+              id="password"
+              name="password"
+              {...register('password')}
+            />
           </Form.Item>
 
           <Form.Item
@@ -67,6 +94,17 @@ export default function Login() {
 
         <LinkCadastro href="/register">Cadastre-se</LinkCadastro>
       </LoginContainer>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </FullContainer>
   );
 }

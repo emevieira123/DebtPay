@@ -1,12 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from 'react';
+import Router from 'next/router';
 import { Divider } from 'antd';
+import { RegistrationInput } from './components/RegistrationInput';
+import { ActionButtonPurple } from '../../shared/ActionButtonPurple';
+import useCreateNewUser from './hooks/useCreateNewUser';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { DebtPayLogo } from '../../assets/DebtPayLogo';
 import { FullContainer } from '../login/styles';
 import { FormContainer } from './styles';
-
-import { RegistrationInput } from './components/RegistrationInput';
-import { ActionButtonPurple } from '../../shared/ActionButtonPurple';
-import { useState } from 'react';
 
 export default function Registration() {
   const [name, setName] = useState('');
@@ -14,8 +18,16 @@ export default function Registration() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+  const { mutate: salvarNovoUsuario } = useCreateNewUser(() => void 0);
+
   function onSubmit() {
-    console.log({ name, email, password, confirmPassword });
+    if (confirmPassword === password) {
+      console.log({ name, email, password });
+      salvarNovoUsuario({ name, email, password });
+      Router.push('/');
+    } else {
+      toast.error('As senhas informadas não coincidem!!');
+    }
   }
 
   return (

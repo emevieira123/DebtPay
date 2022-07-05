@@ -6,15 +6,16 @@ import styled from 'styled-components';
 import { DebtPayLogo } from '../assets/DebtPayLogo';
 import { LogoutIcon } from '../assets/LogoutIcon';
 
-// '367'
-// '90'
+interface HeaderPageProps {
+  username: string;
+}
 
-export function HeaderPage() {
+export function HeaderPage({ username }: HeaderPageProps) {
   return (
     <Container>
       <ContainerUser>
         <Avatar size="large" icon={<UserOutlined />} />
-        <UserName>Geovani Junior</UserName>
+        <UserName>{username}</UserName>
       </ContainerUser>
       <ContainerLogo>
         <DebtPayLogo width="200" height="60" />
