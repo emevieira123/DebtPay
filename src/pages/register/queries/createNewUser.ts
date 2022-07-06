@@ -11,8 +11,6 @@ export default async function createNewUser(value: any) {
       toast.success('Usuário criado com sucesso!!');
     })
     .catch((err) => {
-      // console.log(err.res);
-      // console.log(err.req);
       console.log(err.message);
       toast.error(err.response);
       toast.error(err.request);

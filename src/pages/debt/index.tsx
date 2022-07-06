@@ -1,5 +1,7 @@
-import { useContext, useState } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
+import { GetServerSideProps } from 'next';
+import { parseCookies } from 'nookies';
+import { useState } from 'react';
+import { URLS } from '../../services/URLS';
 import { HeaderPage } from '../../shared/HeaderPage';
 import { CardDebtPrevious } from './components/CardDebtPrevious';
 import { CardDebtRecent } from './components/CardDebtRecent';
@@ -16,7 +18,6 @@ const onChange = (checked) => {
 };
 
 export default function Debt() {
-  const { user } = useContext(AuthContext);
   const [visible, setVisible] = useState(false);
 
   function handleCloseDrawerDebt() {
@@ -24,7 +25,7 @@ export default function Debt() {
   }
   return (
     <>
-      <HeaderPage username={user?.name} />
+      <HeaderPage />
       <Container>
         <h1>Dividas Recentes</h1>
         <AddButton>+</AddButton>
@@ -85,3 +86,20 @@ export default function Debt() {
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { ['debtpay.token']: token } = parseCookies(ctx);
+
+  if (!token) {
+    return {
+      redirect: {
+        destination: URLS.LOGIN,
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+};

@@ -1,27 +1,38 @@
 import { Avatar, Button, Row } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { DebtPayLogo } from '../assets/DebtPayLogo';
 import { LogoutIcon } from '../assets/LogoutIcon';
+import { AuthContext } from '../contexts/AuthContext';
+import { destroyCookie } from 'nookies';
+import { URLS } from '../services/URLS';
+import Router from 'next/router';
 
-interface HeaderPageProps {
-  username: string;
-}
+export function HeaderPage() {
+  const { user } = useContext(AuthContext);
 
-export function HeaderPage({ username }: HeaderPageProps) {
+  const Logout = () => {
+    destroyCookie({}, 'nextauth.token');
+    destroyCookie({}, 'idUser');
+
+    setTimeout(() => {
+      Router.push(URLS.LOGIN);
+    }, 1000);
+  };
+
   return (
     <Container>
       <ContainerUser>
         <Avatar size="large" icon={<UserOutlined />} />
-        <UserName>{username}</UserName>
+        <UserName>{user?.name}</UserName>
       </ContainerUser>
       <ContainerLogo>
         <DebtPayLogo width="200" height="60" />
       </ContainerLogo>
       <ContainerLogout>
-        <IconButton icon={<LogoutIcon />} />
+        <IconButton icon={<LogoutIcon />} onClick={Logout} />
       </ContainerLogout>
     </Container>
   );

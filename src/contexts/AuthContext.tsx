@@ -28,7 +28,6 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const { idUser: id } = parseCookies();
-    console.log(id);
     api
       .get(URLS.USERS + `/${id}`)
       .then((response) => {
@@ -42,10 +41,14 @@ export function AuthProvider({ children }) {
   async function signIn({ email, password }: SignInData) {
     const {
       data: { accessToken, user },
-    } = await api.post(URLS.LOGIN, JSON.stringify({ email, password }), {
-      headers: { 'Content-Type': 'application/json' },
-      withCredentials: false,
-    });
+    } = await api.post(
+      URLS.AUTHENTICATED,
+      JSON.stringify({ email, password }),
+      {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: false,
+      },
+    );
 
     setCookie(undefined, 'debtpay.token', accessToken, {
       maxAge: 60 * 60 * 1, // 60 minutes
@@ -54,7 +57,7 @@ export function AuthProvider({ children }) {
       maxAge: 60 * 60 * 1, // 60 minutes
     });
 
-    api.defaults.headers['Authorization'] = `Bearer ${accessToken}`;
+    api.defaults.headers['authorization'] = `bearer ${accessToken}`;
 
     setUser(user);
 

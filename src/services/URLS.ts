@@ -1,5 +1,6 @@
 export enum URLS {
-  LOGIN = '/login',
+  AUTHENTICATED = '/login',
+  LOGIN = '/',
   USERS = '/users',
   DEBT = '/debt',
 }

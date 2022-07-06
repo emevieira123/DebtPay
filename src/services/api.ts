@@ -8,5 +8,5 @@ export const api = axios.create({
 });
 
 if (acessToken) {
-  api.defaults.headers['Autherization'] = `Bearer ${acessToken}`;
+  api.defaults.headers['Authorization'] = `Bearer ${acessToken}`;
 }

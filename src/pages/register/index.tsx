@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { DebtPayLogo } from '../../assets/DebtPayLogo';
 import { FullContainer } from '../login/styles';
 import { FormContainer } from './styles';
+import { URLS } from '../../services/URLS';
 
 export default function Registration() {
   const [name, setName] = useState('');
@@ -24,7 +25,7 @@ export default function Registration() {
     if (confirmPassword === password) {
       console.log({ name, email, password });
       salvarNovoUsuario({ name, email, password });
-      Router.push('/');
+      Router.push(URLS.LOGIN);
     } else {
       toast.error('As senhas informadas não coincidem!!');
     }
