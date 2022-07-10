@@ -36,6 +36,7 @@ export const InputLogin = styled.input`
   border-radius: 3px;
   font-size: 1.5rem;
   color: var(--grey-900);
+  display: block;
 `;
 
 export const ButtonLogin = styled(Button)`

@@ -10,6 +10,7 @@ import { DrawerDebts } from './components/drawer/DrawerDebts';
 import { InfoDebtDrawer } from './components/drawer/InfoDebtDrawer';
 import { InfoParcelasDrawer } from './components/drawer/InfoParcelasDrawer';
 import { FooterDebt } from './components/FooterDebt';
+import { ModalRegisterDebt } from './components/modal/ModalRegisterDebt';
 import { AddButton, ContainerCardDebtRecent, Container } from './styles';
 import { DebtMock } from './__mocks__/Debt.mock';
 
@@ -18,44 +19,43 @@ const onChange = (checked) => {
 };
 
 export default function Debt() {
-  const [visible, setVisible] = useState(false);
+  const [drawerVisible, setDrawerVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   function handleCloseDrawerDebt() {
-    setVisible(false);
+    setDrawerVisible(false);
   }
+
+  function handleIsOpenModalRegisterDebt() {
+    setModalVisible(true);
+  }
+
+  function handleCloseModalRegisterDebt() {
+    setModalVisible(false);
+  }
+
   return (
     <>
       <HeaderPage />
       <Container>
         <h1>Dividas Recentes</h1>
-        <AddButton>+</AddButton>
+        <AddButton onClick={handleIsOpenModalRegisterDebt}>+</AddButton>
 
         <ContainerCardDebtRecent>
-          <CardDebtRecent onClick={() => setVisible(true)} />
-          <CardDebtRecent onClick={() => setVisible(true)} />
-          <CardDebtRecent onClick={() => setVisible(true)} />
+          <CardDebtRecent onClick={() => setDrawerVisible(true)} />
         </ContainerCardDebtRecent>
       </Container>
 
       <Container>
         <h1>Dividas Anteriores</h1>
-        <CardDebtPrevious color="#8B21DF" />
-        <CardDebtPrevious color="#22BF1F" />
-        <CardDebtPrevious color="#22BF1F" />
-        <CardDebtPrevious color="#8B21DF" />
-        <CardDebtPrevious color="#22BF1F" />
-        <CardDebtPrevious color="#8B21DF" />
-        <CardDebtPrevious color="#22BF1F" />
-        <CardDebtPrevious color="#22BF1F" />
-        <CardDebtPrevious color="#8B21DF" />
-        <CardDebtPrevious color="#22BF1F" />
+        <CardDebtPrevious onClick={() => setDrawerVisible(true)} />
       </Container>
       <Container>
         <FooterDebt />
       </Container>
 
       <DrawerDebts
-        visible={visible}
+        visible={drawerVisible}
         onClose={handleCloseDrawerDebt}
         title="Informações da divida"
         width="60vw"
@@ -83,6 +83,15 @@ export default function Debt() {
           );
         })}
       </DrawerDebts>
+
+      <ModalRegisterDebt
+        title="Register Debt"
+        visible={modalVisible}
+        onSave={() => {
+          false;
+        }}
+        close={handleCloseModalRegisterDebt}
+      />
     </>
   );
 }

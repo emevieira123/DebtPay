@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 interface CardContentProps {
   title: string;
-  content: string;
+  content: string | number;
 }
 
 export function CardRecentContent({ title, content }: CardContentProps) {

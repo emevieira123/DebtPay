@@ -2,40 +2,90 @@ import { Row } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
 import { MoneyIcon } from '../../../assets/MoneyIcon';
+import useGetDebts from '../hooks/useGetDebts';
 
 interface CardDebtPreviousProps {
-  color: string;
+  onClick?: () => void;
 }
 
-export function CardDebtPrevious({ color }: CardDebtPreviousProps) {
+export function CardDebtPrevious({ onClick }: CardDebtPreviousProps) {
+  const { data: debts } = useGetDebts();
+
+  const valorParcela = debts
+    ?.slice(3)
+    .map((item) =>
+      item.parcelas?.slice(0, 1).map((parce) => parce.valor_parcela),
+    );
+
+  const totalParcelas = debts
+    ?.slice(3)
+    .map((item) => item.parcelas?.map((parce) => parce.valor_parcela).length);
+
+  const parcelasPagas = debts
+    ?.slice(3)
+    .map(
+      (item) => item.parcelas?.filter((parce) => parce.status === true).length,
+    );
+
+  const diaVencimento = debts
+    ?.slice(3)
+    .map((item) =>
+      item.parcelas?.slice(0, 1).map((parce) => parce.dia_vencimento),
+    );
+
   return (
-    <FullContainer color={color}>
-      <MoneyIcon width="27" height="27" />
-      <Row>
-        <Title>Nome:</Title>
-        <Content>Provi Financiamento</Content>
-      </Row>
-      <Row>
-        <Title>Produto:</Title>
-        <Content>Curso Rocketseat</Content>
-      </Row>
-      <Row>
-        <Title>Valor da Parcela:</Title>
-        <Content>R$ 83,33</Content>
-      </Row>
-      <Row>
-        <Title>Venc:</Title>
-        <Content>15/07/2022</Content>
-      </Row>
-      <Row>
-        <Title>Valor Total:</Title>
-        <Content>R$ 1080,00</Content>
-      </Row>
-      <Row>
-        <Title>Parcelas Pagas:</Title>
-        <Content>1/12</Content>
-      </Row>
-    </FullContainer>
+    <>
+      {debts?.slice(3).map((debt, index) => {
+        return (
+          <FullContainer
+            onClick={onClick}
+            color={
+              !totalParcelas[index]
+                ? '#4A4A4A'
+                : parcelasPagas[index] === totalParcelas[index]
+                ? '#22BF1F'
+                : '#8B21DF'
+            }
+            key={debt.id}
+          >
+            <MoneyIcon width="27" height="27" />
+            <Row>
+              <Title>Nome:</Title>
+              <Content>{debt.name_debt}</Content>
+            </Row>
+            <Row>
+              <Title>Produto:</Title>
+              <Content>{debt.produto}</Content>
+            </Row>
+            <Row>
+              <Title>Valor da Parcela:</Title>
+              <Content>
+                R$ {valorParcela[index].length <= 0 ? '-' : valorParcela[index]}
+              </Content>
+            </Row>
+            <Row>
+              <Title>Venc:</Title>
+              <Content>
+                {diaVencimento[index].length <= 0 ? '-' : diaVencimento[index]}
+              </Content>
+            </Row>
+            <Row>
+              <Title>Valor Total:</Title>
+              <Content>
+                R${' '}
+                {valorParcela[index].length <= 0
+                  ? '-'
+                  : valorParcela[index] * totalParcelas[index]}
+              </Content>
+            </Row>
+            <Row>
+              <Title>Parcelas Pagas:</Title>
+              <Content>{`${parcelasPagas[index]}/${totalParcelas[index]}`}</Content>
+            </Row>
+          </FullContainer>
+        );
+      })}
+    </>
   );
 }
 

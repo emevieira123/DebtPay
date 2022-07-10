@@ -3,4 +3,5 @@ export enum URLS {
   LOGIN = '/',
   USERS = '/users',
   DEBT = '/debt',
+  DEBT_PARCELAS = '/debt/{debtId}',
 }

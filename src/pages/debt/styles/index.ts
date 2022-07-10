@@ -18,8 +18,9 @@ export const AddButton = styled(Button)`
   height: 2.5rem;
   border: 0;
   border-radius: 50%;
-  background: var(--green);
-  color: var(--grey-900);
+  background: transparent;
+  border: 2px solid var(--green);
+  color: var(--green);
   font-size: 2rem;
   position: fixed;
   right: 2rem;
@@ -27,11 +28,13 @@ export const AddButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.3s;
+
   :focus,
   :hover {
-    border: 2px solid var(--green);
-    color: var(--green);
-    background: transparent;
+    background: var(--green);
+    color: var(--grey-900);
+    border: 0;
   }
 `;
 
@@ -46,7 +49,7 @@ export const ContainerCardDebtRecent = styled(Row)`
 `;
 
 export const CardContainer = styled(Row)`
-  border-left: 6px solid var(--purple);
+  border-left: 6px solid ${(props) => `${props.color}`};
   border-radius: 5px;
   background: var(--grey-500);
   padding: 15px;

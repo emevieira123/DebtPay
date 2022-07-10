@@ -51,10 +51,10 @@ export function AuthProvider({ children }) {
     );
 
     setCookie(undefined, 'debtpay.token', accessToken, {
-      maxAge: 60 * 60 * 1, // 60 minutes
+      maxAge: 60 * 60 * 12, // 12 horas
     });
     setCookie(undefined, 'idUser', user.id, {
-      maxAge: 60 * 60 * 1, // 60 minutes
+      maxAge: 60 * 60 * 12, // 12 horas
     });
 
     api.defaults.headers['authorization'] = `bearer ${accessToken}`;
