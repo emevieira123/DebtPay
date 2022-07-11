@@ -4,6 +4,7 @@ import 'antd/dist/antd.css';
 import { InfoParcelasDrawer } from './InfoParcelasDrawer';
 import useGetDebtAndParcelas from '../../hooks/useGetDebtAndParcelas';
 import { CardInfoParcelasDrawer } from './CardInfoParcelasDrawer';
+import { CadastroParcelas } from '../CadastroParcelas';
 
 const onChange = (checked) => {
   console.log(`switch to ${checked}`);
@@ -48,20 +49,26 @@ export function InfoDebtDrawer({ id: debtId }: InfoDebtDrawerProps) {
         <Row style={{ marginTop: '1.25rem' }}>
           <Col span={6}>
             <TitleInfo>Valor Total:</TitleInfo>
-            <ContentInfo>R$ {valorParcela * totalParcelas}</ContentInfo>
+            <ContentInfo>
+              R$ {valorParcela <= 0 ? '-' : valorParcela * totalParcelas}
+            </ContentInfo>
           </Col>
           <Col span={6} push={1}>
             <TitleInfo>Valor da Parcela:</TitleInfo>
-            <ContentInfo>R$ {valorParcela}</ContentInfo>
+            <ContentInfo>
+              R$ {valorParcela <= 0 ? '-' : valorParcela}
+            </ContentInfo>
           </Col>
           <Col span={6} push={2}>
             <TitleInfo>Dia Venc:</TitleInfo>
-            <ContentInfo>{diaVencimento}</ContentInfo>
+            <ContentInfo>
+              {diaVencimento <= 0 ? '-' : diaVencimento}
+            </ContentInfo>
           </Col>
           <Col push={1}>
             <TitleInfo>Parcelas Pagas:</TitleInfo>
             <ContentInfo>
-              {parcelasPagas}/{totalParcelas}
+              {totalParcelas <= 0 ? '-' : `${parcelasPagas}/${totalParcelas}`}
             </ContentInfo>
           </Col>
         </Row>
@@ -69,18 +76,22 @@ export function InfoDebtDrawer({ id: debtId }: InfoDebtDrawerProps) {
 
       <InfoParcelasDrawer />
 
-      {debt?.parcelas?.map((item, index) => {
-        return (
-          <CardInfoParcelasDrawer
-            key={index}
-            numeroParcela={index + 1}
-            valorParcela={item.valor_parcela}
-            diaVencimento={item.dia_vencimento}
-            status={item.status}
-            onClick={onChange}
-          />
-        );
-      })}
+      {debt?.parcelas <= 0 ? (
+        <CadastroParcelas />
+      ) : (
+        debt?.parcelas?.map((item, index) => {
+          return (
+            <CardInfoParcelasDrawer
+              key={index}
+              numeroParcela={index + 1}
+              valorParcela={item.valor_parcela}
+              diaVencimento={item.dia_vencimento}
+              status={item.status}
+              onClick={onChange}
+            />
+          );
+        })
+      )}
     </>
   );
 }

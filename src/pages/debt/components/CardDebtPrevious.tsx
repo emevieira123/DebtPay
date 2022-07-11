@@ -80,7 +80,11 @@ export function CardDebtPrevious({ setDebtId }: CardDebtPreviousProps) {
             </Row>
             <Row>
               <Title>Parcelas Pagas:</Title>
-              <Content>{`${parcelasPagas[index]}/${totalParcelas[index]}`}</Content>
+              <Content>
+                {parcelasPagas[index] <= 0
+                  ? '-'
+                  : `${parcelasPagas[index]}/${totalParcelas[index]}`}
+              </Content>
             </Row>
           </FullContainer>
         );
