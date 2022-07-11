@@ -6,10 +6,10 @@ import { CardRecentContent } from './CardRecentContent';
 import useGetDebts from '../hooks/useGetDebts';
 
 interface CardDebtRecentProps {
-  onClick: () => void;
+  setDebtId: (id: string) => void;
 }
 
-export function CardDebtRecent({ onClick }: CardDebtRecentProps) {
+export function CardDebtRecent({ setDebtId }: CardDebtRecentProps) {
   const { data: debts } = useGetDebts();
 
   const valorParcela = debts?.map((item) =>
@@ -33,7 +33,7 @@ export function CardDebtRecent({ onClick }: CardDebtRecentProps) {
       {debts?.slice(0, 3).map((debt, index) => {
         return (
           <CardContainer
-            onClick={onClick}
+            onClick={() => setDebtId(debt.id)}
             key={debt.id}
             color={
               !totalParcelas[index]

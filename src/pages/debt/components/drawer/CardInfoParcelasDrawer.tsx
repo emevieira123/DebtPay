@@ -20,7 +20,7 @@ export function CardInfoParcelasDrawer({
   return (
     <CardContainer>
       <span>{numeroParcela}</span>
-      <span>{valorParcela}</span>
+      <span>R$ {valorParcela}</span>
       <span>{diaVencimento}</span>
       <span>
         <Switch

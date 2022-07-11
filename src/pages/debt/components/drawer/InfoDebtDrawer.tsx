@@ -1,59 +1,87 @@
 import { Col, Row } from 'antd';
 import styled from 'styled-components';
 import 'antd/dist/antd.css';
+import { InfoParcelasDrawer } from './InfoParcelasDrawer';
+import useGetDebtAndParcelas from '../../hooks/useGetDebtAndParcelas';
+import { CardInfoParcelasDrawer } from './CardInfoParcelasDrawer';
+
+const onChange = (checked) => {
+  console.log(`switch to ${checked}`);
+};
 
 interface InfoDebtDrawerProps {
-  cobrador: string;
-  produto: string;
-  valorTotal: number;
-  valorParcela: number;
-  diaVencimento: number;
-  parcelasPagas: number;
-  totalParcelas: number;
+  id: string;
 }
 
-export function InfoDebtDrawer({
-  cobrador,
-  produto,
-  valorTotal,
-  valorParcela,
-  diaVencimento,
-  parcelasPagas,
-  totalParcelas,
-}: InfoDebtDrawerProps) {
+export function InfoDebtDrawer({ id: debtId }: InfoDebtDrawerProps) {
+  const { data: debt } = useGetDebtAndParcelas(debtId);
+
+  const valorParcela = debt?.parcelas
+    ?.slice(0, 1)
+    .map((parce) => parce.valor_parcela);
+
+  const totalParcelas = debt?.parcelas?.map(
+    (parce) => parce.valor_parcela,
+  ).length;
+
+  const parcelasPagas = debt?.parcelas?.filter(
+    (parce) => parce.status === true,
+  ).length;
+
+  const diaVencimento = debt?.parcelas
+    ?.slice(0, 1)
+    .map((parce) => parce.dia_vencimento);
+
   return (
-    <FullContainerInfoDebt>
-      <Row>
-        <Col span={6}>
-          <TitleInfo>Cobrador:</TitleInfo>
-          <ContentInfo>{cobrador}</ContentInfo>
-        </Col>
-        <Col span={6} push={1}>
-          <TitleInfo>Produto:</TitleInfo>
-          <ContentInfo>{produto}</ContentInfo>
-        </Col>
-      </Row>
-      <Row style={{ marginTop: '1.25rem' }}>
-        <Col span={6}>
-          <TitleInfo>Valor Total:</TitleInfo>
-          <ContentInfo>R$ {valorTotal}</ContentInfo>
-        </Col>
-        <Col span={6} push={1}>
-          <TitleInfo>Valor da Parcela:</TitleInfo>
-          <ContentInfo>R$ {valorParcela}</ContentInfo>
-        </Col>
-        <Col span={6} push={2}>
-          <TitleInfo>Dia Venc:</TitleInfo>
-          <ContentInfo>{diaVencimento}</ContentInfo>
-        </Col>
-        <Col push={1}>
-          <TitleInfo>Parcelas Pagas:</TitleInfo>
-          <ContentInfo>
-            {parcelasPagas}/{totalParcelas}
-          </ContentInfo>
-        </Col>
-      </Row>
-    </FullContainerInfoDebt>
+    <>
+      <FullContainerInfoDebt>
+        <Row>
+          <Col span={6}>
+            <TitleInfo>Cobrador:</TitleInfo>
+            <ContentInfo>{debt?.name_debt}</ContentInfo>
+          </Col>
+          <Col span={6} push={1}>
+            <TitleInfo>Produto:</TitleInfo>
+            <ContentInfo>{debt?.produto}</ContentInfo>
+          </Col>
+        </Row>
+        <Row style={{ marginTop: '1.25rem' }}>
+          <Col span={6}>
+            <TitleInfo>Valor Total:</TitleInfo>
+            <ContentInfo>R$ {valorParcela * totalParcelas}</ContentInfo>
+          </Col>
+          <Col span={6} push={1}>
+            <TitleInfo>Valor da Parcela:</TitleInfo>
+            <ContentInfo>R$ {valorParcela}</ContentInfo>
+          </Col>
+          <Col span={6} push={2}>
+            <TitleInfo>Dia Venc:</TitleInfo>
+            <ContentInfo>{diaVencimento}</ContentInfo>
+          </Col>
+          <Col push={1}>
+            <TitleInfo>Parcelas Pagas:</TitleInfo>
+            <ContentInfo>
+              {parcelasPagas}/{totalParcelas}
+            </ContentInfo>
+          </Col>
+        </Row>
+      </FullContainerInfoDebt>
+
+      <InfoParcelasDrawer />
+
+      {debt?.parcelas?.map((item, index) => {
+        return (
+          <CardInfoParcelasDrawer
+            key={index}
+            numeroParcela={index + 1}
+            valorParcela={item.valor_parcela}
+            diaVencimento={item.dia_vencimento}
+            status={item.status}
+            onClick={onChange}
+          />
+        );
+      })}
+    </>
   );
 }
 

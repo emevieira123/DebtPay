@@ -5,10 +5,10 @@ import { MoneyIcon } from '../../../assets/MoneyIcon';
 import useGetDebts from '../hooks/useGetDebts';
 
 interface CardDebtPreviousProps {
-  onClick?: () => void;
+  setDebtId: (id: string) => void;
 }
 
-export function CardDebtPrevious({ onClick }: CardDebtPreviousProps) {
+export function CardDebtPrevious({ setDebtId }: CardDebtPreviousProps) {
   const { data: debts } = useGetDebts();
 
   const valorParcela = debts
@@ -38,7 +38,7 @@ export function CardDebtPrevious({ onClick }: CardDebtPreviousProps) {
       {debts?.slice(3).map((debt, index) => {
         return (
           <FullContainer
-            onClick={onClick}
+            onClick={() => setDebtId(debt.id)}
             color={
               !totalParcelas[index]
                 ? '#4A4A4A'
