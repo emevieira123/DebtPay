@@ -12,9 +12,13 @@ const onChange = (checked) => {
 
 interface InfoDebtDrawerProps {
   id: string;
+  onCloseDrawer: () => void;
 }
 
-export function InfoDebtDrawer({ id: debtId }: InfoDebtDrawerProps) {
+export function InfoDebtDrawer({
+  id: debtId,
+  onCloseDrawer,
+}: InfoDebtDrawerProps) {
   const { data: debt } = useGetDebtAndParcelas(debtId);
 
   const valorParcela = debt?.parcelas
@@ -77,7 +81,7 @@ export function InfoDebtDrawer({ id: debtId }: InfoDebtDrawerProps) {
       <InfoParcelasDrawer />
 
       {debt?.parcelas <= 0 ? (
-        <CadastroParcelas />
+        <CadastroParcelas id={debtId} onCloseDrawer={onCloseDrawer} />
       ) : (
         debt?.parcelas?.map((item, index) => {
           return (

@@ -14,7 +14,7 @@ export function HeaderPage() {
   const { user } = useContext(AuthContext);
 
   const Logout = () => {
-    destroyCookie({}, 'nextauth.token');
+    destroyCookie({}, 'debtpay.token');
     destroyCookie({}, 'idUser');
 
     setTimeout(() => {

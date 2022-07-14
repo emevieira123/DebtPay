@@ -26,7 +26,7 @@ export function CardInfoParcelasDrawer({
         <Switch
           checked={status}
           onClick={onClick}
-          style={{ background: `${!status ? '#22BF1F' : '#8B21DF'}` }}
+          style={{ background: `${!status ? '#8B21DF' : '#22BF1F'}` }}
         />
       </span>
     </CardContainer>

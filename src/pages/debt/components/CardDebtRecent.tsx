@@ -78,7 +78,7 @@ export function CardDebtRecent({ setDebtId }: CardDebtRecentProps) {
               <CardRecentContent
                 title="Parcelas Pagas"
                 content={
-                  parcelasPagas[index] <= 0
+                  totalParcelas[index] <= 0
                     ? '-'
                     : `${parcelasPagas[index]}/${totalParcelas[index]}`
                 }

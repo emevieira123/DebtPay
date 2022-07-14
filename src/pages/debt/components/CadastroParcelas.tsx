@@ -1,28 +1,71 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Row } from 'antd';
 import styled from 'styled-components';
+import useCreateParcelas from '../hooks/useCreateParcelas';
+import { useState } from 'react';
 
-export function CadastroParcelas() {
+interface CadastroParcelasProps {
+  id: string;
+  onCloseDrawer: () => void;
+}
+
+export function CadastroParcelas({
+  id: id_debt,
+  onCloseDrawer,
+}: CadastroParcelasProps) {
+  const [valor_parcela, setValorParcela] = useState(0);
+  const [dia_vencimento, setDiaVencimento] = useState(0);
+  const [qtde_parcelas, setQtdeParcelas] = useState(0);
+
+  const { mutate: createParcelas } = useCreateParcelas(() => void 0);
+
+  async function handleSignIn(e: any) {
+    e.preventDefault();
+    console.log({ valor_parcela, dia_vencimento, qtde_parcelas, id_debt });
+    for (let i = 0; i < qtde_parcelas; i++) {
+      createParcelas({ valor_parcela, dia_vencimento, qtde_parcelas, id_debt });
+    }
+    onCloseDrawer();
+  }
+
   return (
     <>
       <Title>Cadastro de Parcelas</Title>
 
-      <Row justify="space-around">
-        <Label>
-          Valor da Parcela
-          <Input name="valor_parcela" id="valor_parcela" type="number" />
-        </Label>
-        <Label>
-          Dia de Vencimento
-          <Input name="dia_vencimento" id="dia_vencimento" type="number" />
-        </Label>
-        <Label>
-          Quantidade de Parcelas
-          <Input name="dia_vencimento" id="dia_vencimento" type="number" />
-        </Label>
-      </Row>
-      <Row justify="center">
-        <BtnCadastrar>Cadastrar</BtnCadastrar>
-      </Row>
+      <form onSubmit={handleSignIn}>
+        <Row justify="space-around">
+          <Label>
+            Valor da Parcela
+            <Input
+              name="valor_parcela"
+              id="valor_parcela"
+              type="number"
+              onChange={(e: any) => setValorParcela(Number(e.target.value))}
+            />
+          </Label>
+          <Label>
+            Dia de Vencimento
+            <Input
+              name="dia_vencimento"
+              id="dia_vencimento"
+              type="number"
+              onChange={(e: any) => setDiaVencimento(Number(e.target.value))}
+            />
+          </Label>
+          <Label>
+            Quantidade de Parcelas
+            <Input
+              name="qtde_parcelas"
+              id="qtde_parcelas"
+              type="number"
+              onChange={(e: any) => setQtdeParcelas(Number(e.target.value))}
+            />
+          </Label>
+        </Row>
+        <Row justify="center">
+          <BtnCadastrar type="submit">Cadastrar</BtnCadastrar>
+        </Row>
+      </form>
     </>
   );
 }

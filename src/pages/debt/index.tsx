@@ -64,7 +64,7 @@ export default function Debt() {
         title="Informações da divida"
         width="60vw"
       >
-        <InfoDebtDrawer id={debtId} />
+        <InfoDebtDrawer id={debtId} onCloseDrawer={handleCloseDrawerDebt} />
       </DrawerDebts>
 
       <ModalRegisterDebt
