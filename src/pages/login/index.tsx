@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import React, { useContext } from 'react';
-import { Checkbox, Form } from 'antd';
+import React, { useContext, useState } from 'react';
 import { DebtPayLogo } from '../../assets/DebtPayLogo';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
   ButtonLogin,
+  CheckedStyle,
   FormStyled,
   FullContainer,
   InputLogin,
@@ -15,14 +15,19 @@ import {
 } from './styles';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useForm } from 'react-hook-form';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
   const { signIn } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function handleSignIn(data) {
+    setIsLoading(true);
     try {
       await signIn(data);
+      await setIsLoading(false);
     } catch (e) {
       toast.error('Erro: E-mail ou Senha Inválidos!');
     }
@@ -35,23 +40,11 @@ export default function Login() {
 
         <FormStyled
           name="basic"
-          labelCol={{ span: 8 }}
-          wrapperCol={{ span: 16 }}
-          initialValues={{ remember: true }}
-          onFinish={handleSubmit(handleSignIn)}
-          onFinishFailed={() => {}}
+          onSubmit={handleSubmit(handleSignIn)}
           autoComplete="off"
         >
-          <Form.Item
-            label="Email"
-            // name="email"
-            rules={[
-              {
-                required: true,
-                message: 'Please input your email!',
-              },
-            ]}
-          >
+          <label>
+            Email
             <InputLogin
               type="text"
               id="email"
@@ -59,37 +52,23 @@ export default function Login() {
               {...register('email')}
               style={{ marginBottom: '2.5rem' }}
             />
-          </Form.Item>
+          </label>
 
-          <Form.Item
-            label="Password"
-            // name="password"
-            rules={[
-              {
-                required: true,
-                message: 'Please input your password!',
-              },
-            ]}
-          >
+          <label>
+            Password
             <InputLogin
               type="password"
               id="password"
               name="password"
               {...register('password')}
             />
-          </Form.Item>
+          </label>
 
-          <Form.Item
-            name="remember"
-            valuePropName="checked"
-            wrapperCol={{ offset: 8, span: 16 }}
-          >
-            <Checkbox> Remember me</Checkbox>
-          </Form.Item>
+          <CheckedStyle> Remember me</CheckedStyle>
 
-          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <ButtonLogin htmlType="submit">Entrar</ButtonLogin>
-          </Form.Item>
+          <ButtonLogin type="submit">
+            {isLoading && <Spin indicator={spinLoader} />} Entrar
+          </ButtonLogin>
         </FormStyled>
 
         <LinkCadastro href="/register">Cadastre-se</LinkCadastro>
@@ -108,3 +87,12 @@ export default function Login() {
     </FullContainer>
   );
 }
+
+const spinLoader = (
+  <LoadingOutlined
+    style={{
+      fontSize: 24,
+    }}
+    spin
+  />
+);

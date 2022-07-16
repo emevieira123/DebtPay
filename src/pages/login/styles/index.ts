@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button, Form, Input, Row } from 'antd';
+import { Row, Checkbox } from 'antd';
 
 export const FullContainer = styled(Row)`
   width: 100%;
@@ -24,7 +24,7 @@ export const LoginContainer = styled(Row)`
   gap: 2.5rem;
 `;
 
-export const FormStyled = styled(Form)`
+export const FormStyled = styled.form`
   width: 60%;
 `;
 
@@ -39,7 +39,7 @@ export const InputLogin = styled.input`
   display: block;
 `;
 
-export const ButtonLogin = styled(Button)`
+export const ButtonLogin = styled.button`
   width: 100%;
   height: 2.5rem;
   margin-top: 2.5rem;
@@ -50,6 +50,9 @@ export const ButtonLogin = styled(Button)`
   border: 0;
   border-radius: 3px;
   transition: all 0.3s;
+  align-items: center;
+  justify-content: center;
+  :focus,
   :hover {
     filter: brightness(0.8);
   }
@@ -58,4 +61,8 @@ export const ButtonLogin = styled(Button)`
 export const LinkCadastro = styled.a`
   color: var(--purple);
   font-size: 1.2rem;
+`;
+
+export const CheckedStyle = styled(Checkbox)`
+  color: var(--white);
 `;

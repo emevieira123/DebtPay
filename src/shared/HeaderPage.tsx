@@ -16,6 +16,7 @@ export function HeaderPage() {
   const Logout = () => {
     destroyCookie({}, 'debtpay.token');
     destroyCookie({}, 'idUser');
+    window.location.reload();
 
     setTimeout(() => {
       Router.push(URLS.LOGIN);
