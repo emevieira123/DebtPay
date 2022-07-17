@@ -98,7 +98,8 @@ const FullContainer = styled(Row)`
   background: var(--grey-500);
   border-left: 6px solid ${(props) => `${props.color}`};
   border-radius: 3px;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 0.2fr 1fr 1fr 1fr 0.5fr 1fr 1fr;
   padding: 1rem;
   margin-top: 0.5rem;
   cursor: pointer;
