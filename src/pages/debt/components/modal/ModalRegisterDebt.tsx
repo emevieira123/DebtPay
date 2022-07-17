@@ -54,6 +54,7 @@ export function ModalRegisterDebt({
             type="text"
             name="cobrador"
             onChange={(e) => setName_debt(e.target.value)}
+            value={name_debt}
           />
         </Label>
         <Label>
@@ -62,6 +63,7 @@ export function ModalRegisterDebt({
             type="text"
             name="produto"
             onChange={(e) => setProduto(e.target.value)}
+            value={produto}
           />
         </Label>
       </ModalStyled>

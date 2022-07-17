@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from 'react';
 import { Row } from 'antd';
 import styled from 'styled-components';
 import useCreateParcelas from '../hooks/useCreateParcelas';
-import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 interface CadastroParcelasProps {
   id: string;
@@ -17,15 +18,30 @@ export function CadastroParcelas({
   const [dia_vencimento, setDiaVencimento] = useState(0);
   const [qtde_parcelas, setQtdeParcelas] = useState(0);
 
-  const { mutate: createParcelas } = useCreateParcelas(() => void 0);
+  const { mutate: createParcelas } = useCreateParcelas(() => onCloseDrawer());
 
   async function handleSignIn(e: any) {
     e.preventDefault();
-    console.log({ valor_parcela, dia_vencimento, qtde_parcelas, id_debt });
-    for (let i = 0; i < qtde_parcelas; i++) {
-      createParcelas({ valor_parcela, dia_vencimento, qtde_parcelas, id_debt });
+    try {
+      if (valor_parcela <= 0 || dia_vencimento <= 0 || qtde_parcelas <= 0) {
+        onCloseDrawer();
+        toast.error(
+          'Erro: Não é possível cadastrar valor menor ou igual a "0"!',
+        );
+      } else {
+        for (let i = 0; i < qtde_parcelas; i++) {
+          await createParcelas({
+            valor_parcela,
+            dia_vencimento,
+            qtde_parcelas,
+            id_debt,
+          });
+        }
+        toast.success('Parcelas cadastradas com sucesso!!');
+      }
+    } catch (error) {
+      toast.error('Erro: todos os campos devem ser preenchidos!');
     }
-    onCloseDrawer();
   }
 
   return (

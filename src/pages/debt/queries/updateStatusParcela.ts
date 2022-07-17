@@ -13,6 +13,6 @@ export default async function updateStatusParcela(id: string) {
       console.log(err.message);
       toast.error(err.response);
       toast.error(err.request);
-      toast.error('Erro: todos os campos devem ser preenchidos!');
+      toast.error('Erro: ao atualizar status da parcelas!');
     });
 }

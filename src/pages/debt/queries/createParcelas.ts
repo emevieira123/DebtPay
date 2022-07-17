@@ -8,12 +8,10 @@ export default async function createParcelas(value: any) {
     .post(URLS.CREATE_PARCELAS, value)
     .then((resp) => {
       console.log(resp);
-      toast.success('Parcelas cadastradas com sucesso!!');
     })
     .catch((err) => {
       console.log(err.message);
       toast.error(err.response);
       toast.error(err.request);
-      toast.error('Erro: todos os campos devem ser preenchidos!');
     });
 }
