@@ -10,6 +10,8 @@ import { InfoDebtDrawer } from './components/drawer/InfoDebtDrawer';
 import { FooterDebt } from './components/FooterDebt';
 import { ModalRegisterDebt } from './components/modal/ModalRegisterDebt';
 import { AddButton, ContainerCardDebtRecent, Container } from './styles';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Debt() {
   const [drawerVisible, setDrawerVisible] = useState(false);
@@ -70,10 +72,19 @@ export default function Debt() {
       <ModalRegisterDebt
         title="Register Debt"
         visible={modalVisible}
-        onSave={() => {
-          false;
-        }}
         close={handleCloseModalRegisterDebt}
+      />
+
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
       />
     </>
   );

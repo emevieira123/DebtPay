@@ -1,10 +1,12 @@
 import { Modal, Row } from 'antd';
+import { useState } from 'react';
 import styled from 'styled-components';
+import { FormAddIcon } from '../../../../assets/FormAddIcon';
+import useCreateDebt from '../../hooks/useCreateDebt';
 
 interface ModalRegisterDebtProps {
   title: string;
   close: () => void;
-  onSave: () => void;
   visible: boolean;
 }
 
@@ -12,21 +14,34 @@ export function ModalRegisterDebt({
   title,
   visible,
   close,
-  onSave,
 }: ModalRegisterDebtProps) {
+  const [name_debt, setName_debt] = useState('');
+  const [produto, setProduto] = useState('');
+
+  const { mutate: salvarDebt } = useCreateDebt(() => close());
+
+  function onSubmit() {
+    console.log({ name_debt, produto });
+    salvarDebt({ name_debt, produto });
+    setName_debt('');
+    setProduto('');
+  }
+
   return (
     <>
       <ModalStyled
         title={
           <Row justify="space-between">
-            <Label>{title}</Label>
+            <Label style={{ display: 'flex', alignItems: 'center' }}>
+              <FormAddIcon style={{ marginRight: '10px' }} /> {title}
+            </Label>
             <CloseButton onClick={close}>X</CloseButton>
           </Row>
         }
         footer={
-          <Row justify="space-between">
+          <Row justify="space-between" style={{ marginBottom: '20px' }}>
             <CancelButton onClick={close}>Cancelar</CancelButton>
-            <SaveButton onClick={onSave}>Salvar</SaveButton>
+            <SaveButton onClick={onSubmit}>Salvar</SaveButton>
           </Row>
         }
         closable={false}
@@ -35,11 +50,19 @@ export function ModalRegisterDebt({
       >
         <Label>
           Cobrador
-          <Input type="text" />
+          <Input
+            type="text"
+            name="cobrador"
+            onChange={(e) => setName_debt(e.target.value)}
+          />
         </Label>
         <Label>
           Produto
-          <Input type="text" />
+          <Input
+            type="text"
+            name="produto"
+            onChange={(e) => setProduto(e.target.value)}
+          />
         </Label>
       </ModalStyled>
     </>
@@ -47,6 +70,15 @@ export function ModalRegisterDebt({
 }
 
 const ModalStyled = styled(Modal)`
+  .ant-modal-content {
+    background: transparent !important;
+  }
+  .ant-modal-footer {
+    border-radius: 0 0 0.5rem 0.5rem;
+  }
+  .ant-modal-header {
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
   .ant-modal-header,
   .ant-modal-body,
   .ant-modal-footer {
