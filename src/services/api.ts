@@ -4,7 +4,7 @@ import { parseCookies } from 'nookies';
 const { 'debtpay.token': acessToken } = parseCookies();
 
 export const api = axios.create({
-  baseURL: 'http://localhost:4000',
+  baseURL: process.env.BASE_URL,
 });
 
 if (acessToken) {
