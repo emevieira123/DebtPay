@@ -1,7 +1,6 @@
 import React from 'react';
-import { CardContainer } from '../pages/debt/styles';
+import { CardContainer, StyledDados } from './styles/debtStyles';
 import { MoneyIcon } from '../assets/MoneyIcon';
-import { StyledDados } from '../pages/debt/styles';
 import { CardRecentContent } from './CardRecentContent';
 import useGetDebts from '../pages/debt/hooks/useGetDebts';
 

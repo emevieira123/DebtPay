@@ -9,7 +9,11 @@ import { DrawerDebts } from '../../components/drawer/DrawerDebts';
 import { InfoDebtDrawer } from '../../components/drawer/InfoDebtDrawer';
 import { FooterDebt } from '../../components/FooterDebt';
 import { ModalRegisterDebt } from '../../components/modal/ModalRegisterDebt';
-import { AddButton, ContainerCardDebtRecent, Container } from './styles';
+import {
+  AddButton,
+  ContainerCardDebtRecent,
+  Container,
+} from '../../components/styles/debtStyles';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

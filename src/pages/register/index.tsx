@@ -2,15 +2,15 @@
 import { useState } from 'react';
 import Router from 'next/router';
 import { Divider } from 'antd';
-import { RegistrationInput } from './components/RegistrationInput';
+import { RegistrationInput } from '../../components/RegistrationInput';
 import { ActionButtonPurple } from '../../shared/ActionButtonPurple';
 import useCreateNewUser from './hooks/useCreateNewUser';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { DebtPayLogo } from '../../assets/DebtPayLogo';
-import { FullContainer } from '../login/styles';
-import { FormContainer } from './styles';
+import { FullContainer } from '../../components/styles/loginStyles';
+import { FormContainer } from '../../components/styles/registerStyles';
 import { URLS } from '../../services/URLS';
 
 export default function Registration() {
