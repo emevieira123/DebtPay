@@ -2,7 +2,7 @@ import { Modal, Row } from 'antd';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { FormAddIcon } from '../../assets/FormAddIcon';
-import useCreateDebt from '../../pages/debt/hooks/useCreateDebt';
+import useCreateDebt from '../../hooks/useCreateDebt';
 
 interface ModalRegisterDebtProps {
   title: string;

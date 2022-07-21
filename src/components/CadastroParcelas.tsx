@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import { Row } from 'antd';
 import styled from 'styled-components';
-import useCreateParcelas from '../pages/debt/hooks/useCreateParcelas';
 import { toast } from 'react-toastify';
+import useCreateParcelas from '../hooks/useCreateParcelas';
 
 interface CadastroParcelasProps {
   id: string;

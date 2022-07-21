@@ -4,7 +4,7 @@ import Router from 'next/router';
 import { Divider } from 'antd';
 import { RegistrationInput } from '../../components/RegistrationInput';
 import { ActionButtonPurple } from '../../shared/ActionButtonPurple';
-import useCreateNewUser from './hooks/useCreateNewUser';
+import useCreateNewUser from '../../hooks/useCreateNewUser';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

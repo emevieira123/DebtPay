@@ -2,11 +2,11 @@ import { Col, Row } from 'antd';
 import styled from 'styled-components';
 import 'antd/dist/antd.css';
 import { InfoParcelasDrawer } from './InfoParcelasDrawer';
-import useGetDebtAndParcelas from '../../pages/debt/hooks/useGetDebtAndParcelas';
 import { CardInfoParcelasDrawer } from './CardInfoParcelasDrawer';
 import { CadastroParcelas } from '../CadastroParcelas';
-import useUpdateStatusParcela from '../../pages/debt/hooks/useUpdateStatusParcela';
 import { useState } from 'react';
+import useGetDebtAndParcelas from '../../hooks/useGetDebtAndParcelas';
+import useUpdateStatusParcela from '../../hooks/useUpdateStatusParcela';
 
 // setTeste(item.id),
 

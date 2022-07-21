@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { api } from '../../../services/api';
-import { URLS } from '../../../services/URLS';
+import { api } from '../services/api';
+import { URLS } from '../services/URLS';
 import { toast } from 'react-toastify';
 
 export default async function createNewUser(value: any) {

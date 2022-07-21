@@ -2,7 +2,7 @@ import React from 'react';
 import { CardContainer, StyledDados } from './styles/debtStyles';
 import { MoneyIcon } from '../assets/MoneyIcon';
 import { CardRecentContent } from './CardRecentContent';
-import useGetDebts from '../pages/debt/hooks/useGetDebts';
+import useGetDebts from '../hooks/useGetDebts';
 
 interface CardDebtRecentProps {
   setDebtId: (id: string) => void;

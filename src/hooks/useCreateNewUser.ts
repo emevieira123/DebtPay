@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMutation } from 'react-query';
-import { URLS } from '../../../services/URLS';
-import { queryClient } from '../../_app';
+import { URLS } from '../services/URLS';
+import { queryClient } from '../pages/_app';
 import createNewUser from '../queries/createNewUser';
 
 export default function useCreateNewUser(onSuccess: () => void) {
