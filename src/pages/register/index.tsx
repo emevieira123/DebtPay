@@ -9,8 +9,8 @@ import useCreateNewUser from '../../hooks/useCreateNewUser';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { DebtPayLogo } from '../../assets/DebtPayLogo';
-import { FullContainer } from '../../components/styles/loginStyles';
-import { FormContainer } from '../../components/styles/registerStyles';
+import { FullContainer } from '../../styles/loginStyles';
+import { FormContainer } from '../../styles/registerStyles';
 import { URLS } from '../../services/URLS';
 
 export default function Registration() {

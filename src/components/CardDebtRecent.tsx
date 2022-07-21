@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardContainer, StyledDados } from './styles/debtStyles';
+import { CardContainer, StyledDados } from '../styles/debtStyles';
 import { MoneyIcon } from '../assets/MoneyIcon';
 import { CardRecentContent } from './CardRecentContent';
 import useGetDebts from '../hooks/useGetDebts';

@@ -12,7 +12,7 @@ import {
   InputLogin,
   LinkCadastro,
   LoginContainer,
-} from '../../components/styles/loginStyles';
+} from '../../styles/loginStyles';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useForm } from 'react-hook-form';
 import { LoadingOutlined } from '@ant-design/icons';

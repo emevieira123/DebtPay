@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ContainerInput, StyleInput } from './styles/registerStyles';
+
+import { ContainerInput, StyleInput } from '../styles/registerStyles';
 
 interface RegistrationInputProps {
   labelOne: string;

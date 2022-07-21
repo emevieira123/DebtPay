@@ -13,7 +13,7 @@ import {
   AddButton,
   ContainerCardDebtRecent,
   Container,
-} from '../../components/styles/debtStyles';
+} from '../../styles/debtStyles';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
