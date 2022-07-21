@@ -1,5 +1,5 @@
-import { api } from '../../../services/api';
-import { URLS } from '../../../services/URLS';
+import { api } from '../services/api';
+import { URLS } from '../services/URLS';
 
 export default async function getDebtAndParcelas(id: string) {
   const response = await api

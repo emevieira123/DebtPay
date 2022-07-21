@@ -1,6 +1,6 @@
-import { api } from '../../../services/api';
-import { URLS } from '../../../services/URLS';
 import { toast } from 'react-toastify';
+import { api } from '../services/api';
+import { URLS } from '../services/URLS';
 
 export default async function updateStatusParcela(id: string) {
   return await api

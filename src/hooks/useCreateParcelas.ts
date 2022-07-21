@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMutation } from 'react-query';
-import { URLS } from '../../../services/URLS';
-import { queryClient } from '../../_app';
+import { queryClient } from '../pages/_app';
 import createParcelas from '../queries/createParcelas';
+import { URLS } from '../services/URLS';
 
 export default function useCreateParcelas(onSuccess: () => void) {
   return useMutation(createParcelas, {

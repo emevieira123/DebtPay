@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
-import { URLS } from '../../../services/URLS';
 import getDebts from '../queries/getDebts';
+import { URLS } from '../services/URLS';
 
 export default function useGetDebts() {
   const resultQuery = useQuery([URLS.DEBT], getDebts, {

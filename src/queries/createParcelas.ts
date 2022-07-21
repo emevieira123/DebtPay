@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { api } from '../../../services/api';
-import { URLS } from '../../../services/URLS';
 import { toast } from 'react-toastify';
+import { api } from '../services/api';
+import { URLS } from '../services/URLS';
 
 export default async function createParcelas(value: any) {
   return await api

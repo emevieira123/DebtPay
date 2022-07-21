@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMutation } from 'react-query';
-import { URLS } from '../../../services/URLS';
-import { queryClient } from '../../_app';
+import { queryClient } from '../pages/_app';
 import updateStatusParcela from '../queries/updateStatusParcela';
+import { URLS } from '../services/URLS';
 
 export default function useUpdateStatusParcela(
   parcelaId: string,
