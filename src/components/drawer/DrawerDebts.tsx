@@ -1,6 +1,6 @@
 import { Drawer, Row } from 'antd';
 import styled from 'styled-components';
-import { InfoIcon } from '../../../../assets/InfoIcon';
+import { InfoIcon } from '../../assets/InfoIcon';
 
 interface DrawerDebtsProps {
   title: string;

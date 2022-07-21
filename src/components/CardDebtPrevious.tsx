@@ -1,8 +1,8 @@
 import React from 'react';
 import { Row } from 'antd';
 import styled from 'styled-components';
-import { MoneyIcon } from '../../../assets/MoneyIcon';
-import useGetDebts from '../hooks/useGetDebts';
+import { MoneyIcon } from '../assets/MoneyIcon';
+import useGetDebts from '../pages/debt/hooks/useGetDebts';
 
 interface CardDebtPreviousProps {
   setDebtId: (id: string) => void;
