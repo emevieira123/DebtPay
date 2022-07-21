@@ -67,7 +67,7 @@ export default function Login() {
           <CheckedStyle> Remember me</CheckedStyle>
 
           <ButtonLogin type="submit">
-            {isLoading && <Spin indicator={spinLoader} />} Entrar
+            {isLoading ? <Spin indicator={spinLoader} /> : 'Entrar'}
           </ButtonLogin>
         </FormStyled>
 

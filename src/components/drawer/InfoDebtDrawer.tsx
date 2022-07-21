@@ -4,11 +4,9 @@ import 'antd/dist/antd.css';
 import { InfoParcelasDrawer } from './InfoParcelasDrawer';
 import { CardInfoParcelasDrawer } from './CardInfoParcelasDrawer';
 import { CadastroParcelas } from '../CadastroParcelas';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useGetDebtAndParcelas from '../../hooks/useGetDebtAndParcelas';
 import useUpdateStatusParcela from '../../hooks/useUpdateStatusParcela';
-
-// setTeste(item.id),
 
 interface InfoDebtDrawerProps {
   id: string;
@@ -23,10 +21,6 @@ export function InfoDebtDrawer({
   const [parcelaId, setParcelaId] = useState('');
   console.log(parcelaId);
 
-  // useEffect(() => {
-  //   debt;
-  // }, []);
-
   const { mutate: updateParcela } = useUpdateStatusParcela(
     parcelaId,
     () => void 0,
@@ -34,7 +28,6 @@ export function InfoDebtDrawer({
 
   const onChange = (checked) => {
     console.log(`switch to ${checked}`);
-    // const teste = { checked, parcelaId };
     updateParcela(parcelaId);
   };
 
