@@ -4,7 +4,7 @@ import 'antd/dist/antd.css';
 import { InfoParcelasDrawer } from './InfoParcelasDrawer';
 import { CardInfoParcelasDrawer } from './CardInfoParcelasDrawer';
 import { CadastroParcelas } from '../CadastroParcelas';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useGetDebtAndParcelas from '../../hooks/useGetDebtAndParcelas';
 import useUpdateStatusParcela from '../../hooks/useUpdateStatusParcela';
 
@@ -22,6 +22,10 @@ export function InfoDebtDrawer({
   const { data: debt } = useGetDebtAndParcelas(debtId);
   const [parcelaId, setParcelaId] = useState('');
   console.log(parcelaId);
+
+  // useEffect(() => {
+  //   debt;
+  // }, []);
 
   const { mutate: updateParcela } = useUpdateStatusParcela(
     parcelaId,

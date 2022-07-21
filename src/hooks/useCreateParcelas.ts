@@ -8,6 +8,7 @@ export default function useCreateParcelas(onSuccess: () => void) {
   return useMutation(createParcelas, {
     onSuccess() {
       queryClient.invalidateQueries(URLS.DEBT);
+      queryClient.invalidateQueries(URLS.DEBT_PARCELAS);
 
       onSuccess();
     },
