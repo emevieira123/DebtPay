@@ -1,6 +1,6 @@
 Este é um projeto [Next.js](https://nextjs.org/) inicializado com [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Rodando o Projeto
+## Ações para rodar o projeto localmente
 
 Primeiro, instale as dependencia e execute o servidor de desenvolvimento:
 
@@ -24,11 +24,15 @@ Caso ainda existam erros, ele irá informar na própria linha quais são eles.
 
 ## Sobre o Projeto
 
-O layout do projeto pode ser conferido no [FIGMA](https://www.figma.com/file/EmEco4Z1XclqFHEv4C5iG1/DebtPay?node-id=113%3A631)
+Você pode ver o projeto em execusão em [DebtPay](https://debt-pay.vercel.app/)
 
-A documentação do backend pode ser acessada em [DOCS](http://localhost:3000/)
+O codigo fonte está disponivel no [GitHub - Front-End](https://github.com/emevieira123/Api-DebtPay)
 
-Este é um projeto pessoal que foi desenvolvido com o intuito de
+O designer do projeto está disponivel no [FIGMA](https://www.figma.com/file/EmEco4Z1XclqFHEv4C5iG1/DebtPay?node-id=113%3A631)
+
+A documentação do backend pode ser acessada em [DOCS](https://api-debtpay-production.up.railway.app/api-docs)
+
+Esse é um projeto pessoal que foi desenvolvido com o intuito de
 criar uma forma onde eu pudesse administrar algumas dívidas de
 forma mais organizada.
 
@@ -39,7 +43,7 @@ forma mais organizada.
 - Styled-Compenents
 - React-Toastify
 - Banco de dados MySQL
-- Backend em NodeJS disponivel em [GitHub](https://github.com/emevieira123)
+- Backend em NodeJS disponivel em [GitHub - Back-End](https://github.com/emevieira123/Api-DebtPay)
 - Swagger para documentar o backend
 
 ### Funcionalidades do projeto
@@ -48,4 +52,8 @@ forma mais organizada.
 - Cadastro das dividas e parcelas
 - checagem das dividas pagas e pendentes
 
+`O projeto ainda está em andamento, por isso algumas funcionalidades ainda podem não estar funcinando corretamente`
 
+# Imagens do Projeto
+
+Em Breve...
