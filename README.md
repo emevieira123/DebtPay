@@ -26,7 +26,7 @@ Caso ainda existam erros, ele irá informar na própria linha quais são eles.
 
 Você pode ver o projeto em execusão em [DebtPay](https://debt-pay.vercel.app/)
 
-O codigo fonte está disponivel no [GitHub - Front-End](https://github.com/emevieira123/Api-DebtPay)
+O codigo fonte está disponivel no [GitHub - Front-End](https://github.com/emevieira123/DebtPay)
 
 O designer do projeto está disponivel no [FIGMA](https://www.figma.com/file/EmEco4Z1XclqFHEv4C5iG1/DebtPay?node-id=113%3A631)
 
