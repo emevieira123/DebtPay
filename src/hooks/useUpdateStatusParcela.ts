@@ -4,10 +4,7 @@ import { queryClient } from '../pages/_app';
 import updateStatusParcela from '../queries/updateStatusParcela';
 import { URLS } from '../services/URLS';
 
-export default function useUpdateStatusParcela(
-  parcelaId: string,
-  onSuccess: () => void,
-) {
+export default function useUpdateStatusParcela(onSuccess: () => void) {
   return useMutation(updateStatusParcela, {
     onSuccess() {
       queryClient.invalidateQueries(URLS.DEBT_PARCELAS);

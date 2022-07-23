@@ -5,5 +5,5 @@ export enum URLS {
   DEBT = '/debt',
   DEBT_PARCELAS = '/debt/{debtId}',
   CREATE_PARCELAS = '/parcelas',
-  UPDATE_STATUS_PARCELAS = '/parcelas/update/{parcelaId}',
+  UPDATE_STATUS_PARCELAS = '/parcelas/update',
 }

@@ -2,13 +2,14 @@
 import React from 'react';
 import { Row, Switch } from 'antd';
 import styled from 'styled-components';
+import useUpdateStatusParcela from '../../hooks/useUpdateStatusParcela';
 
 interface CardInfoParcelasProps {
   numeroParcela: number;
   valorParcela: number;
   diaVencimento: number;
   status: boolean;
-  onClick: (item: any) => void;
+  parcelaId: string;
 }
 
 export function CardInfoParcelasDrawer({
@@ -16,8 +17,15 @@ export function CardInfoParcelasDrawer({
   valorParcela,
   diaVencimento,
   status,
-  onClick,
+  parcelaId,
 }: CardInfoParcelasProps) {
+  const { mutate: updateParcela } = useUpdateStatusParcela(() => void 0);
+
+  const onChange = (status) => {
+    console.log(`switch to ${status}`);
+    updateParcela({ parcelaId, status });
+  };
+
   return (
     <CardContainer>
       <span>{numeroParcela}</span>
@@ -25,8 +33,8 @@ export function CardInfoParcelasDrawer({
       <span>{diaVencimento}</span>
       <span>
         <Switch
-          checked={status}
-          onClick={onClick}
+          defaultChecked={status}
+          onChange={onChange}
           style={{ background: `${!status ? '#8B21DF' : '#22BF1F'}` }}
         />
       </span>

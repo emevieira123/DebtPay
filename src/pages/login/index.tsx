@@ -27,8 +27,8 @@ export default function Login() {
     setIsLoading(true);
     try {
       await signIn(data);
-      await setIsLoading(false);
     } catch (e) {
+      setIsLoading(false);
       toast.error('Erro: E-mail ou Senha Inválidos!');
     }
   }

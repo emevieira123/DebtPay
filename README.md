@@ -1,4 +1,6 @@
-Este é um projeto [Next.js](https://nextjs.org/) inicializado com [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DebtPay
+
+### Este é um projeto [Next.js](https://nextjs.org/) inicializado com [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Ações para rodar o projeto localmente
 
@@ -22,7 +24,15 @@ Os arquivos `.eslintrc.js`, `.eslintrc.json` e `.editorconfig` possuem configura
 Caso ainda existam erros, ele irá informar na própria linha quais são eles.
 
 
-## Sobre o Projeto
+# Sobre o Projeto
+
+## Descrição
+
+Esse é um projeto pessoal que foi desenvolvido com o intuito de
+criar uma plataforma onde eu pudesse cadastrar e administrar algumas
+dívidas pessoais de forma mais organizada.
+
+## Informações
 
 Você pode ver o projeto em execusão em [DebtPay](https://debt-pay.vercel.app/)
 
@@ -32,28 +42,26 @@ O designer do projeto está disponivel no [FIGMA](https://www.figma.com/file/EmE
 
 A documentação do backend pode ser acessada em [DOCS](https://api-debtpay-production.up.railway.app/api-docs)
 
-Esse é um projeto pessoal que foi desenvolvido com o intuito de
-criar uma forma onde eu pudesse administrar algumas dívidas de
-forma mais organizada.
-
-### Tecnologias usadas para o desenvolvimento
-- NextJS
+## Tecnologias usadas para o desenvolvimento
+- ReactJS com o framework NextJS
 - Ant Designer
 - React Query
 - Styled-Compenents
 - React-Toastify
 - Banco de dados MySQL
 - Backend em NodeJS disponivel em [GitHub - Back-End](https://github.com/emevieira123/Api-DebtPay)
-- Swagger para documentar o backend
+- Swagger para documentar o backend (`em desenvolvimento...`)
 
-### Funcionalidades do projeto
+## Funcionalidades do projeto
 - Cadastro de usuários
 - Login
 - Cadastro das dividas e parcelas
 - checagem das dividas pagas e pendentes
+- Temas Dark e Light (`em desenvolvimento...`)
+- Responsividade (`em desenvolvimento...`)
 
 `O projeto ainda está em andamento, por isso algumas funcionalidades ainda podem não estar funcinando corretamente`
 
-# Imagens do Projeto
+## Imagens do Projeto
 
 Em Breve...
