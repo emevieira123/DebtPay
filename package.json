@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "antd": "^4.21.4",
     "axios": "^0.27.2",
     "dotenv": "^16.0.1",
@@ -19,7 +20,7 @@
     "react-query": "^3.39.1",
     "react-router-dom": "6",
     "react-toastify": "^9.0.5",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^12.2.2",

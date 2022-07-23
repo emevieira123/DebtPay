@@ -16,11 +16,13 @@ import {
 } from '../../styles/debtStyles';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { LoadingPage } from '../../components/LoadingPage';
 
 export default function Debt() {
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [debtId, setDebtId] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   function handleCloseDrawerDebt() {
     setDrawerVisible(false);
@@ -35,7 +37,7 @@ export default function Debt() {
   }
 
   return (
-    <>
+    <LoadingPage loading={isLoading}>
       <HeaderPage />
       <Container>
         <h1>Dividas Recentes</h1>
@@ -47,6 +49,7 @@ export default function Debt() {
               setDebtId(id);
               setDrawerVisible(true);
             }}
+            setIsLoading={setIsLoading}
           />
         </ContainerCardDebtRecent>
       </Container>
@@ -90,7 +93,7 @@ export default function Debt() {
         draggable
         pauseOnHover
       />
-    </>
+    </LoadingPage>
   );
 }
 
