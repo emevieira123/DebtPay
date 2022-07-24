@@ -55,7 +55,7 @@ export default function Login() {
           </label>
 
           <label>
-            Password
+            Senha
             <InputLogin
               type="password"
               id="password"
@@ -64,7 +64,7 @@ export default function Login() {
             />
           </label>
 
-          <CheckedStyle> Remember me</CheckedStyle>
+          <CheckedStyle> Lembrar-se</CheckedStyle>
 
           <ButtonLogin type="submit">
             {isLoading ? <Spin indicator={spinLoader} /> : 'Entrar'}

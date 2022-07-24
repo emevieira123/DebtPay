@@ -50,7 +50,7 @@ export function CardDebtPrevious({ setDebtId }: CardDebtPreviousProps) {
           >
             <MoneyIcon width="27" height="27" />
             <Row>
-              <Title>Nome:</Title>
+              <Title>Cobrador:</Title>
               <Content>{debt.name_debt}</Content>
             </Row>
             <Row>

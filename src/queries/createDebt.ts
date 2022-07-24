@@ -8,7 +8,7 @@ export default async function createDebt(value: any) {
     .post(URLS.DEBT, value)
     .then((resp) => {
       console.log(resp);
-      toast.success('Dívida cadastradas com sucesso!!');
+      toast.success('Dívida cadastrada com sucesso!!');
     })
     .catch((err) => {
       console.log(err.message);

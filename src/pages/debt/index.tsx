@@ -77,7 +77,7 @@ export default function Debt() {
       </DrawerDebts>
 
       <ModalRegisterDebt
-        title="Register Debt"
+        title="Cadastrar Dívida"
         visible={modalVisible}
         close={handleCloseModalRegisterDebt}
       />

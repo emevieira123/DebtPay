@@ -53,7 +53,7 @@ export function CardDebtRecent({
               <div
                 style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}
               >
-                <CardRecentContent title="Nome:" content={debt.name_debt} />
+                <CardRecentContent title="Cobrador:" content={debt.name_debt} />
                 <CardRecentContent title="Produto:" content={debt.produto} />
               </div>
               <MoneyIcon />
