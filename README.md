@@ -64,4 +64,6 @@ A documentação do backend pode ser acessada em [DOCS](https://api-debtpay-prod
 
 ## Imagens do Projeto
 
-Em Breve...
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/33058881/180658886-ba600d92-c0af-4767-838d-46fa4c8614f6.gif" />
+</div>
