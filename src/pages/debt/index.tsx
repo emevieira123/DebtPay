@@ -81,7 +81,6 @@ export default function Debt() {
         visible={modalVisible}
         close={handleCloseModalRegisterDebt}
       />
-
       <ToastContainer
         position="top-right"
         autoClose={2000}
