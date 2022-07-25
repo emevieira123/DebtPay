@@ -46,7 +46,7 @@ export default function Login() {
           <label>
             Email
             <InputLogin
-              type="text"
+              type="email"
               id="email"
               name="email"
               {...register('email')}

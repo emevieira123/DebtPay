@@ -6,7 +6,7 @@ import { RegistrationInput } from '../../components/RegistrationInput';
 import { ActionButtonPurple } from '../../shared/ActionButtonPurple';
 import useCreateNewUser from '../../hooks/useCreateNewUser';
 
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { DebtPayLogo } from '../../assets/DebtPayLogo';
 import { FullContainer } from '../../styles/loginStyles';
@@ -22,12 +22,13 @@ export default function Registration() {
   const { mutate: salvarNovoUsuario } = useCreateNewUser(() => void 0);
 
   function onSubmit() {
-    if (confirmPassword === password) {
-      console.log({ name, email, password });
+    if (!name || !email || !password) {
+      salvarNovoUsuario({});
+    } else if (confirmPassword !== password) {
+      toast.error('As senhas informadas não coincidem!!');
+    } else {
       salvarNovoUsuario({ name, email, password });
       Router.push(URLS.LOGIN);
-    } else {
-      toast.error('As senhas informadas não coincidem!!');
     }
   }
 
@@ -47,7 +48,7 @@ export default function Registration() {
           valueOne={name}
           onChangeOne={(e: any) => setName(e.target.value)}
           labelTwo="E-mail"
-          typeTwo="text"
+          typeTwo="email"
           nameTwo="email"
           idTwo="email"
           valueTwo={email}
@@ -70,6 +71,17 @@ export default function Registration() {
 
         <ActionButtonPurple onClick={onSubmit}>Cadastrar</ActionButtonPurple>
       </FormContainer>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </FullContainer>
   );
 }
