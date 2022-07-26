@@ -13,7 +13,7 @@ export function CardDebtRecent({
   setDebtId,
   setIsLoading,
 }: CardDebtRecentProps) {
-  const { data: debts, isLoading } = useGetDebts();
+  const { data: debts } = useGetDebts();
 
   const valorParcela = debts?.map((item) =>
     item.parcelas?.slice(0, 1).map((parce) => parce.valor_parcela),
@@ -38,7 +38,7 @@ export function CardDebtRecent({
           <CardContainer
             onClick={() => {
               setDebtId(debt.id);
-              setIsLoading(isLoading);
+              setIsLoading(!debts ? true : false);
             }}
             key={debt.id}
             color={
