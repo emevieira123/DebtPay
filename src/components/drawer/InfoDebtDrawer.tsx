@@ -5,6 +5,7 @@ import { InfoParcelasDrawer } from './InfoParcelasDrawer';
 import { CardInfoParcelasDrawer } from './CardInfoParcelasDrawer';
 import { CadastroParcelas } from '../CadastroParcelas';
 import useGetDebtAndParcelas from '../../hooks/useGetDebtAndParcelas';
+import { LoadingPage } from '../LoadingPage';
 
 interface InfoDebtDrawerProps {
   id: string;
@@ -34,7 +35,7 @@ export function InfoDebtDrawer({
     .map((parce) => parce.dia_vencimento);
 
   return (
-    <>
+    <LoadingPage loading={!debt ? true : false}>
       <FullContainerInfoDebt>
         <Row>
           <Col span={6}>
@@ -92,7 +93,7 @@ export function InfoDebtDrawer({
           );
         })
       )}
-    </>
+    </LoadingPage>
   );
 }
 
