@@ -3,13 +3,13 @@
 import { ContainerInput, StyleInput } from '../styles/registerStyles';
 
 interface RegistrationInputProps {
-  labelOne: string;
+  labelOne?: string;
   typeOne?: string;
   nameOne?: string;
   idOne?: string;
   valueOne?: string;
   onChangeOne?: (e: any) => void;
-  labelTwo: string;
+  labelTwo?: string;
   typeTwo?: string;
   nameTwo?: string;
   idTwo?: string;
@@ -43,16 +43,18 @@ export function RegistrationInput({
           onChange={onChangeOne}
         />
       </label>
-      <label style={{ width: '100%' }}>
-        {labelTwo}
-        <StyleInput
-          type={typeTwo}
-          name={nameTwo}
-          id={idTwo}
-          value={valueTwo}
-          onChange={onChangeTwo}
-        />
-      </label>
+      {labelTwo && (
+        <label style={{ width: '100%' }}>
+          {labelTwo}
+          <StyleInput
+            type={typeTwo}
+            name={nameTwo}
+            id={idTwo}
+            value={valueTwo}
+            onChange={onChangeTwo}
+          />
+        </label>
+      )}
     </ContainerInput>
   );
 }

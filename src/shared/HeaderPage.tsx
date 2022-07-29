@@ -26,7 +26,14 @@ export function HeaderPage() {
   return (
     <Container>
       <ContainerUser>
-        <Avatar size="large" icon={<UserOutlined />} />
+        {user?.github_user ? (
+          <AvatarStyled>
+            <ImgStyled src={`https://github.com/${user?.github_user}.png`} />
+          </AvatarStyled>
+        ) : (
+          <Avatar size="large" icon={<UserOutlined />} />
+        )}
+
         <UserName>{user?.name}</UserName>
       </ContainerUser>
       <ContainerLogo>
@@ -79,4 +86,19 @@ const IconButton = styled(Button)`
     color: #fff;
     background: transparent;
   }
+`;
+
+const AvatarStyled = styled(Row)`
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  border: 2px solid var(--green);
+  align-items: center;
+  justify-content: center;
+`;
+
+const ImgStyled = styled.img`
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
 `;

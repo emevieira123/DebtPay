@@ -1,33 +1,37 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import Router from 'next/router';
-import { Divider } from 'antd';
+import { Divider, Row } from 'antd';
 import { RegistrationInput } from '../../components/RegistrationInput';
 import { ActionButtonPurple } from '../../shared/ActionButtonPurple';
 import useCreateNewUser from '../../hooks/useCreateNewUser';
 
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { DebtPayLogo } from '../../assets/DebtPayLogo';
 import { FullContainer } from '../../styles/loginStyles';
 import { FormContainer } from '../../styles/registerStyles';
 import { URLS } from '../../services/URLS';
+import styled from 'styled-components';
 
 export default function Registration() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [github_user, setGithub_user] = useState('');
 
   const { mutate: salvarNovoUsuario } = useCreateNewUser(() => void 0);
 
   function onSubmit() {
     if (!name || !email || !password) {
       salvarNovoUsuario({});
+      Router.push(URLS.LOGIN);
     } else if (confirmPassword !== password) {
       toast.error('As senhas informadas não coincidem!!');
+      Router.push(URLS.LOGIN);
     } else {
-      salvarNovoUsuario({ name, email, password });
+      salvarNovoUsuario({ name, email, password, github_user });
       Router.push(URLS.LOGIN);
     }
   }
@@ -68,20 +72,35 @@ export default function Registration() {
           valueTwo={confirmPassword}
           onChangeTwo={(e: any) => setConfirmPassword(e.target.value)}
         />
+        <Row style={{ width: '100%', marginTop: '2rem', gap: '2rem' }}>
+          <LebalGitHub>
+            Usuário do GitHub
+            <input
+              type="text"
+              name="user_github"
+              id="user_github"
+              value={github_user}
+              onChange={(e: any) => setGithub_user(e.target.value)}
+            />
+          </LebalGitHub>
+        </Row>
 
         <ActionButtonPurple onClick={onSubmit}>Cadastrar</ActionButtonPurple>
       </FormContainer>
-      <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
     </FullContainer>
   );
 }
+
+const LebalGitHub = styled.label`
+  color: var(--white);
+  input {
+    display: block;
+    width: 25%;
+    height: 2.5rem;
+    background-color: var(--grey-300);
+    border: 0;
+    border-radius: 3px;
+    font-size: 1.5rem;
+    color: var(--grey-900);
+  }
+`;

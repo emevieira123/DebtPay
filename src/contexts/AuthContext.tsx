@@ -7,6 +7,7 @@ import { URLS } from '../services/URLS';
 
 type User = {
   name: string;
+  github_user: string;
 };
 
 type SignInData = {
