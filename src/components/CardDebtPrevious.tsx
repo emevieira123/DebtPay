@@ -3,6 +3,7 @@ import { Row } from 'antd';
 import styled from 'styled-components';
 import { MoneyIcon } from '../assets/MoneyIcon';
 import useGetDebts from '../hooks/useGetDebts';
+import { MoneyFormat } from './drawer/InfoDebtDrawer';
 
 interface CardDebtPreviousProps {
   setDebtId: (id: string) => void;
@@ -36,6 +37,7 @@ export function CardDebtPrevious({ setDebtId }: CardDebtPreviousProps) {
   return (
     <>
       {debts?.slice(3).map((debt, index) => {
+        const Total = valorParcela[index] * totalParcelas[index];
         return (
           <FullContainer
             onClick={() => setDebtId(debt.id)}
@@ -60,22 +62,24 @@ export function CardDebtPrevious({ setDebtId }: CardDebtPreviousProps) {
             <Row>
               <Title>Valor da Parcela:</Title>
               <Content>
-                R$ {valorParcela[index].length <= 0 ? '-' : valorParcela[index]}
+                R${' '}
+                {valorParcela[index].length <= 0
+                  ? '-'
+                  : MoneyFormat(valorParcela[index])}
               </Content>
             </Row>
             <Row>
-              <Title>Venc:</Title>
+              <Title>Vencimento:</Title>
               <Content>
-                {diaVencimento[index].length <= 0 ? '-' : diaVencimento[index]}
+                {diaVencimento[index].length <= 0
+                  ? '-'
+                  : String(diaVencimento[index]).padStart(2, '0')}
               </Content>
             </Row>
             <Row>
               <Title>Valor Total:</Title>
               <Content>
-                R${' '}
-                {valorParcela[index].length <= 0
-                  ? '-'
-                  : valorParcela[index] * totalParcelas[index]}
+                R$ {valorParcela[index].length <= 0 ? '-' : MoneyFormat(Total)}
               </Content>
             </Row>
             <Row>

@@ -22,10 +22,11 @@ export function ActionButtonPurple({
 
 const StyledButton = styled(Button)`
   border: 0;
+  width: 15rem;
   border-radius: 3px;
   font-size: 1.25rem;
   margin-top: 2rem;
-  padding: 0.6rem 2rem 0.6rem 2rem;
+  padding: 0.6rem 0 0.6rem 0;
   background: var(--purple);
   color: var(--white);
   transition: all 0.3s;

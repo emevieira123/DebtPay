@@ -3,6 +3,7 @@ import { CardContainer, StyledDados } from '../styles/debtStyles';
 import { MoneyIcon } from '../assets/MoneyIcon';
 import { CardRecentContent } from './CardRecentContent';
 import useGetDebts from '../hooks/useGetDebts';
+import { MoneyFormat } from './drawer/InfoDebtDrawer';
 
 interface CardDebtRecentProps {
   setDebtId: (id: string) => void;
@@ -34,6 +35,8 @@ export function CardDebtRecent({
   return (
     <>
       {debts?.slice(0, 3).map((debt, index) => {
+        const Total = valorParcela[index] * totalParcelas[index];
+        const VParcela = valorParcela[index];
         return (
           <CardContainer
             onClick={() => {
@@ -62,13 +65,15 @@ export function CardDebtRecent({
               <CardRecentContent
                 title="Valor da Parcela:"
                 content={`R$ ${
-                  valorParcela[index].length <= 0 ? '-' : valorParcela[index]
+                  valorParcela[index].length <= 0 ? '-' : MoneyFormat(VParcela)
                 }`}
               />
               <CardRecentContent
-                title="Vencimento Dia:"
+                title="Dia de Vencimento:"
                 content={
-                  diaVencimento[index].length <= 0 ? '-' : diaVencimento[index]
+                  diaVencimento[index].length <= 0
+                    ? '-'
+                    : String(diaVencimento[index]).padStart(2, '0')
                 }
               />
             </StyledDados>
@@ -76,9 +81,7 @@ export function CardDebtRecent({
               <CardRecentContent
                 title="Valor Total:"
                 content={`R$ ${
-                  valorParcela[index].length <= 0
-                    ? '-'
-                    : valorParcela[index] * totalParcelas[index]
+                  valorParcela[index].length <= 0 ? '-' : MoneyFormat(Total)
                 }`}
               />
               <CardRecentContent
