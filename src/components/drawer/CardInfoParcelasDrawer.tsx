@@ -6,7 +6,7 @@ import useUpdateStatusParcela from '../../hooks/useUpdateStatusParcela';
 
 interface CardInfoParcelasProps {
   numeroParcela: number;
-  valorParcela: number;
+  valorParcela: number | string;
   diaVencimento: number | string;
   status: boolean;
   parcelaId: string;

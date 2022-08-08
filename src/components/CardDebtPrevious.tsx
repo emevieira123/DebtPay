@@ -3,6 +3,7 @@ import { Row } from 'antd';
 import styled from 'styled-components';
 import { MoneyIcon } from '../assets/MoneyIcon';
 import useGetDebts from '../hooks/useGetDebts';
+import { MoneyFormat } from './drawer/InfoDebtDrawer';
 
 interface CardDebtPreviousProps {
   setDebtId: (id: string) => void;
@@ -64,7 +65,7 @@ export function CardDebtPrevious({ setDebtId }: CardDebtPreviousProps) {
                 R${' '}
                 {valorParcela[index].length <= 0
                   ? '-'
-                  : `${valorParcela[index].toFixed(2)}`.replace('.', ',')}
+                  : MoneyFormat(valorParcela[index])}
               </Content>
             </Row>
             <Row>
@@ -78,10 +79,7 @@ export function CardDebtPrevious({ setDebtId }: CardDebtPreviousProps) {
             <Row>
               <Title>Valor Total:</Title>
               <Content>
-                R${' '}
-                {valorParcela[index].length <= 0
-                  ? '-'
-                  : Total.toFixed(2).replace('.', ',')}
+                R$ {valorParcela[index].length <= 0 ? '-' : MoneyFormat(Total)}
               </Content>
             </Row>
             <Row>

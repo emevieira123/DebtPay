@@ -12,6 +12,10 @@ interface InfoDebtDrawerProps {
   onCloseDrawer: () => void;
 }
 
+export function MoneyFormat(value) {
+  return Number(value).toFixed(2).replace('.', ',');
+}
+
 export function InfoDebtDrawer({
   id: debtId,
   onCloseDrawer,
@@ -53,13 +57,13 @@ export function InfoDebtDrawer({
           <Col span={6}>
             <TitleInfo>Valor Total:</TitleInfo>
             <ContentInfo>
-              R$ {valorParcela <= 0 ? '-' : Total.toFixed(2).replace('.', ',')}
+              R$ {valorParcela <= 0 ? '-' : MoneyFormat(Total)}
             </ContentInfo>
           </Col>
           <Col span={6} push={1}>
             <TitleInfo>Valor da Parcela:</TitleInfo>
             <ContentInfo>
-              R$ {valorParcela <= 0 ? '-' : `${valorParcela}`.replace('.', ',')}
+              R$ {valorParcela <= 0 ? '-' : MoneyFormat(valorParcela)}
             </ContentInfo>
           </Col>
           <Col span={6} push={2}>
@@ -89,7 +93,7 @@ export function InfoDebtDrawer({
             <CardInfoParcelasDrawer
               key={index}
               numeroParcela={index + 1}
-              valorParcela={item.valor_parcela.toFixed(2).replace('.', ',')}
+              valorParcela={MoneyFormat(item.valor_parcela)}
               diaVencimento={String(item.dia_vencimento).padStart(2, '0')}
               status={item.status}
               parcelaId={item.id}

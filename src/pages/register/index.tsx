@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import Router from 'next/router';
-import { Divider, Row } from 'antd';
+import { Divider, Row, Spin } from 'antd';
 import { RegistrationInput } from '../../components/RegistrationInput';
 import { ActionButtonPurple } from '../../shared/ActionButtonPurple';
 import useCreateNewUser from '../../hooks/useCreateNewUser';
@@ -13,6 +13,7 @@ import { FullContainer } from '../../styles/loginStyles';
 import { FormContainer } from '../../styles/registerStyles';
 import { URLS } from '../../services/URLS';
 import styled from 'styled-components';
+import { LoadingOutlined } from '@ant-design/icons';
 
 export default function Registration() {
   const [name, setName] = useState('');
@@ -22,8 +23,10 @@ export default function Registration() {
   const [github_user, setGithub_user] = useState('');
 
   const { mutate: salvarNovoUsuario } = useCreateNewUser(() => void 0);
+  const [isLoading, setIsLoading] = useState(false);
 
   function onSubmit() {
+    setIsLoading(true);
     if (!name || !email || !password) {
       salvarNovoUsuario({});
       Router.push(URLS.LOGIN);
@@ -31,8 +34,10 @@ export default function Registration() {
       toast.error('As senhas informadas não coincidem!!');
       Router.push(URLS.LOGIN);
     } else {
-      salvarNovoUsuario({ name, email, password, github_user });
-      Router.push(URLS.LOGIN);
+      setTimeout(() => {
+        salvarNovoUsuario({ name, email, password, github_user });
+        Router.push(URLS.LOGIN);
+      }, 1000);
     }
   }
 
@@ -85,7 +90,9 @@ export default function Registration() {
           </LebalGitHub>
         </Row>
 
-        <ActionButtonPurple onClick={onSubmit}>Cadastrar</ActionButtonPurple>
+        <ActionButtonPurple onClick={onSubmit}>
+          {isLoading ? <Spin indicator={spinLoader} /> : 'Cadastrar'}
+        </ActionButtonPurple>
       </FormContainer>
     </FullContainer>
   );
@@ -104,3 +111,12 @@ const LebalGitHub = styled.label`
     color: var(--grey-900);
   }
 `;
+
+const spinLoader = (
+  <LoadingOutlined
+    style={{
+      fontSize: 24,
+    }}
+    spin
+  />
+);
