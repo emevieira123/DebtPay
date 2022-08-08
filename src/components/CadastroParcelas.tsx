@@ -57,6 +57,7 @@ export function CadastroParcelas({
               id="valor_parcela"
               type="number"
               onChange={(e: any) => setValorParcela(Number(e.target.value))}
+              step=".01"
             />
           </Label>
           <Label>

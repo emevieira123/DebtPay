@@ -36,6 +36,7 @@ export function CardDebtPrevious({ setDebtId }: CardDebtPreviousProps) {
   return (
     <>
       {debts?.slice(3).map((debt, index) => {
+        const Total = valorParcela[index] * totalParcelas[index];
         return (
           <FullContainer
             onClick={() => setDebtId(debt.id)}
@@ -60,13 +61,18 @@ export function CardDebtPrevious({ setDebtId }: CardDebtPreviousProps) {
             <Row>
               <Title>Valor da Parcela:</Title>
               <Content>
-                R$ {valorParcela[index].length <= 0 ? '-' : valorParcela[index]}
+                R${' '}
+                {valorParcela[index].length <= 0
+                  ? '-'
+                  : `${valorParcela[index]}`.replace('.', ',')}
               </Content>
             </Row>
             <Row>
-              <Title>Venc:</Title>
+              <Title>Vencimento:</Title>
               <Content>
-                {diaVencimento[index].length <= 0 ? '-' : diaVencimento[index]}
+                {diaVencimento[index].length <= 0
+                  ? '-'
+                  : String(diaVencimento[index]).padStart(2, '0')}
               </Content>
             </Row>
             <Row>
@@ -75,7 +81,7 @@ export function CardDebtPrevious({ setDebtId }: CardDebtPreviousProps) {
                 R${' '}
                 {valorParcela[index].length <= 0
                   ? '-'
-                  : valorParcela[index] * totalParcelas[index]}
+                  : Total.toFixed(2).replace('.', ',')}
               </Content>
             </Row>
             <Row>

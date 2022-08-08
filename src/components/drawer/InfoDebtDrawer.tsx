@@ -34,6 +34,8 @@ export function InfoDebtDrawer({
     ?.slice(0, 1)
     .map((parce) => parce.dia_vencimento);
 
+  const Total = valorParcela * totalParcelas;
+
   return (
     <LoadingPage loading={!debt ? true : false}>
       <FullContainerInfoDebt>
@@ -51,19 +53,21 @@ export function InfoDebtDrawer({
           <Col span={6}>
             <TitleInfo>Valor Total:</TitleInfo>
             <ContentInfo>
-              R$ {valorParcela <= 0 ? '-' : valorParcela * totalParcelas}
+              R$ {valorParcela <= 0 ? '-' : Total.toFixed(2).replace('.', ',')}
             </ContentInfo>
           </Col>
           <Col span={6} push={1}>
             <TitleInfo>Valor da Parcela:</TitleInfo>
             <ContentInfo>
-              R$ {valorParcela <= 0 ? '-' : valorParcela}
+              R$ {valorParcela <= 0 ? '-' : `${valorParcela}`.replace('.', ',')}
             </ContentInfo>
           </Col>
           <Col span={6} push={2}>
             <TitleInfo>Dia Venc:</TitleInfo>
             <ContentInfo>
-              {diaVencimento <= 0 ? '-' : diaVencimento}
+              {diaVencimento <= 0
+                ? '-'
+                : String(diaVencimento).padStart(2, '0')}
             </ContentInfo>
           </Col>
           <Col push={1}>
@@ -85,8 +89,8 @@ export function InfoDebtDrawer({
             <CardInfoParcelasDrawer
               key={index}
               numeroParcela={index + 1}
-              valorParcela={item.valor_parcela}
-              diaVencimento={item.dia_vencimento}
+              valorParcela={item.valor_parcela.replace('.', ',')}
+              diaVencimento={String(item.dia_vencimento).padStart(2, '0')}
               status={item.status}
               parcelaId={item.id}
             />

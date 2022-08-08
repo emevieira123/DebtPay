@@ -34,6 +34,7 @@ export function CardDebtRecent({
   return (
     <>
       {debts?.slice(0, 3).map((debt, index) => {
+        const Total = valorParcela[index] * totalParcelas[index];
         return (
           <CardContainer
             onClick={() => {
@@ -62,13 +63,17 @@ export function CardDebtRecent({
               <CardRecentContent
                 title="Valor da Parcela:"
                 content={`R$ ${
-                  valorParcela[index].length <= 0 ? '-' : valorParcela[index]
+                  valorParcela[index].length <= 0
+                    ? '-'
+                    : `${valorParcela[index]}`.replace('.', ',')
                 }`}
               />
               <CardRecentContent
-                title="Vencimento Dia:"
+                title="Dia de Vencimento:"
                 content={
-                  diaVencimento[index].length <= 0 ? '-' : diaVencimento[index]
+                  diaVencimento[index].length <= 0
+                    ? '-'
+                    : String(diaVencimento[index]).padStart(2, '0')
                 }
               />
             </StyledDados>
@@ -78,7 +83,7 @@ export function CardDebtRecent({
                 content={`R$ ${
                   valorParcela[index].length <= 0
                     ? '-'
-                    : valorParcela[index] * totalParcelas[index]
+                    : Total.toFixed(2).replace('.', ',')
                 }`}
               />
               <CardRecentContent
