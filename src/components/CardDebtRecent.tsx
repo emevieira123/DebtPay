@@ -65,7 +65,7 @@ export function CardDebtRecent({
                 content={`R$ ${
                   valorParcela[index].length <= 0
                     ? '-'
-                    : `${valorParcela[index]}`.replace('.', ',')
+                    : `${valorParcela[index].toFixed(2)}`.replace('.', ',')
                 }`}
               />
               <CardRecentContent

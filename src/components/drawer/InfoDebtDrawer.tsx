@@ -89,7 +89,7 @@ export function InfoDebtDrawer({
             <CardInfoParcelasDrawer
               key={index}
               numeroParcela={index + 1}
-              valorParcela={item.valor_parcela.replace('.', ',')}
+              valorParcela={item.valor_parcela.toFixed(2).replace('.', ',')}
               diaVencimento={String(item.dia_vencimento).padStart(2, '0')}
               status={item.status}
               parcelaId={item.id}

@@ -64,7 +64,7 @@ export function CardDebtPrevious({ setDebtId }: CardDebtPreviousProps) {
                 R${' '}
                 {valorParcela[index].length <= 0
                   ? '-'
-                  : `${valorParcela[index]}`.replace('.', ',')}
+                  : `${valorParcela[index].toFixed(2)}`.replace('.', ',')}
               </Content>
             </Row>
             <Row>
