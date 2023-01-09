@@ -34,7 +34,7 @@ dívidas pessoais de forma mais organizada.
 
 ## Informações
 
-- Você pode ver o projeto em execusão em [DebtPay](https://www.debtpay.tk/)
+- Você pode ver o projeto em execução em [DebtPay](https://www.debtpay.tk/)
 
 - O codigo fonte está disponivel no [GitHub - Front-End](https://github.com/emevieira123/DebtPay)
 
