@@ -20,7 +20,10 @@ export function InfoDebtDrawer({
   id: debtId,
   onCloseDrawer,
 }: InfoDebtDrawerProps) {
-  const { data: debt } = useGetDebtAndParcelas(debtId);
+  const { data: debt, isLoading } = useGetDebtAndParcelas(debtId);
+
+  console.log(debtId);
+  console.log('data', debt);
 
   const valorParcela = debt?.parcelas
     ?.slice(0, 1)
@@ -40,8 +43,20 @@ export function InfoDebtDrawer({
 
   const Total = valorParcela * totalParcelas;
 
+  if (isLoading) {
+    return (
+      <Row
+        justify="center"
+        align="middle"
+        style={{ width: '100%', minHeight: '100%' }}
+      >
+        <LoadingPage loading={isLoading} />
+      </Row>
+    );
+  }
+
   return (
-    <LoadingPage loading={!debt ? true : false}>
+    <>
       <FullContainerInfoDebt>
         <Row>
           <Col span={6}>
@@ -101,7 +116,7 @@ export function InfoDebtDrawer({
           );
         })
       )}
-    </LoadingPage>
+    </>
   );
 }
 

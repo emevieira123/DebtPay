@@ -18,7 +18,9 @@ export function CadastroParcelas({
   const [dia_vencimento, setDiaVencimento] = useState(0);
   const [qtde_parcelas, setQtdeParcelas] = useState(0);
 
-  const { mutate: createParcelas } = useCreateParcelas(() => onCloseDrawer());
+  const { mutate: createParcelas, isLoading } = useCreateParcelas(() =>
+    onCloseDrawer(),
+  );
 
   async function handleSignIn(e: any) {
     e.preventDefault();
@@ -80,7 +82,9 @@ export function CadastroParcelas({
           </Label>
         </Row>
         <Row justify="center">
-          <BtnCadastrar type="submit">Cadastrar</BtnCadastrar>
+          <BtnCadastrar disabled={isLoading} type="submit">
+            {isLoading ? 'Cadastrando' : 'Cadastrar'}
+          </BtnCadastrar>
         </Row>
       </form>
     </>
@@ -113,7 +117,7 @@ const Input = styled.input`
   }
 `;
 
-const BtnCadastrar = styled.button`
+const BtnCadastrar = styled.button<{ disabled?: boolean }>`
   width: 10rem;
   height: 2.5rem;
   background: var(--purple);
@@ -125,5 +129,11 @@ const BtnCadastrar = styled.button`
   transition: all 0.3s;
   :hover {
     filter: brightness(0.8);
+  }
+  &:disabled {
+    background: ${(prosp) => prosp.disabled && 'transparent'};
+    color: ${(prosp) => prosp.disabled && 'var(--grey-300)'};
+    border: ${(prosp) => prosp.disabled && '1px solid var(--grey-300)'};
+    cursor: ${(props) => props.disabled && 'not-allowed'};
   }
 `;

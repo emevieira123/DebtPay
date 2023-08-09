@@ -18,7 +18,7 @@ export function ModalRegisterDebt({
   const [name_debt, setName_debt] = useState('');
   const [produto, setProduto] = useState('');
 
-  const { mutate: salvarDebt } = useCreateDebt(() => close());
+  const { mutate: salvarDebt, isLoading } = useCreateDebt(() => close());
 
   function onSubmit() {
     console.log({ name_debt, produto });
@@ -41,7 +41,9 @@ export function ModalRegisterDebt({
         footer={
           <Row justify="space-between" style={{ marginBottom: '20px' }}>
             <CancelButton onClick={close}>Cancelar</CancelButton>
-            <SaveButton onClick={onSubmit}>Salvar</SaveButton>
+            <SaveButton disabled={isLoading} onClick={onSubmit}>
+              {isLoading ? 'Salvando' : 'Salvar'}
+            </SaveButton>
           </Row>
         }
         closable={false}
@@ -131,7 +133,7 @@ const CancelButton = styled.button`
   }
 `;
 
-const SaveButton = styled.button`
+const SaveButton = styled.button<{ disabled?: boolean }>`
   width: 10rem;
   height: 2rem;
   border: 0;
@@ -141,5 +143,11 @@ const SaveButton = styled.button`
   color: var(--white);
   :hover {
     filter: brightness(0.8);
+  }
+  &:disabled {
+    background: ${(prosp) => prosp.disabled && 'transparent'};
+    color: ${(prosp) => prosp.disabled && 'var(--grey-300)'};
+    border: ${(prosp) => prosp.disabled && '1px solid var(--grey-300)'};
+    cursor: ${(props) => props.disabled && 'not-allowed'};
   }
 `;
