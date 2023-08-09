@@ -34,13 +34,13 @@ dívidas pessoais de forma mais organizada.
 
 ## Informações
 
-- Você pode ver o projeto em execução em [DebtPay](https://www.debtpay.tk/)
+- Você pode ver o projeto em execução em [DebtPay](https://debt-pay.vercel.app/)
 
 - O codigo fonte está disponivel no [GitHub - Front-End](https://github.com/emevieira123/DebtPay)
 
 - O designer do projeto está disponivel no [FIGMA](https://www.figma.com/file/EmEco4Z1XclqFHEv4C5iG1/DebtPay?node-id=113%3A631)
 
-- A documentação do backend pode ser acessada em [DOCS](https://api-debtpay-production.up.railway.app/api-docs)
+- A documentação do backend pode ser acessada em [DOCUMENTAÇÃO](https://api-debtpay.onrender.com/api-docs/)
 
 ## Tecnologias usadas para o desenvolvimento
 - ReactJS com o framework NextJS
