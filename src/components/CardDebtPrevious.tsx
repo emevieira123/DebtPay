@@ -4,13 +4,14 @@ import styled from 'styled-components';
 import { MoneyIcon } from '../assets/MoneyIcon';
 import useGetDebts from '../hooks/useGetDebts';
 import { MoneyFormat } from './drawer/InfoDebtDrawer';
+import { LoadingPage } from './LoadingPage';
 
 interface CardDebtPreviousProps {
   setDebtId: (id: string) => void;
 }
 
 export function CardDebtPrevious({ setDebtId }: CardDebtPreviousProps) {
-  const { data: debts } = useGetDebts();
+  const { data: debts, isLoading } = useGetDebts();
 
   const valorParcela = debts
     ?.slice(3)
@@ -33,6 +34,14 @@ export function CardDebtPrevious({ setDebtId }: CardDebtPreviousProps) {
     .map((item) =>
       item.parcelas?.slice(0, 1).map((parce) => parce.dia_vencimento),
     );
+
+  if (isLoading) {
+    return (
+      <Row align="middle">
+        <LoadingPage loading={isLoading} />
+      </Row>
+    );
+  }
 
   return (
     <>

@@ -4,17 +4,14 @@ import { MoneyIcon } from '../assets/MoneyIcon';
 import { CardRecentContent } from './CardRecentContent';
 import useGetDebts from '../hooks/useGetDebts';
 import { MoneyFormat } from './drawer/InfoDebtDrawer';
+import { LoadingPage } from './LoadingPage';
 
 interface CardDebtRecentProps {
   setDebtId: (id: string) => void;
-  setIsLoading: (isLoading: boolean) => void;
 }
 
-export function CardDebtRecent({
-  setDebtId,
-  setIsLoading,
-}: CardDebtRecentProps) {
-  const { data: debts } = useGetDebts();
+export function CardDebtRecent({ setDebtId }: CardDebtRecentProps) {
+  const { data: debts, isLoading } = useGetDebts();
 
   const valorParcela = debts?.map((item) =>
     item.parcelas?.slice(0, 1).map((parce) => parce.valor_parcela),
@@ -32,6 +29,16 @@ export function CardDebtRecent({
     item.parcelas?.slice(0, 1).map((parce) => parce.dia_vencimento),
   );
 
+  if (isLoading) {
+    return (
+      <>
+        <LoadingPage loading={isLoading} />
+        <LoadingPage loading={isLoading} />
+        <LoadingPage loading={isLoading} />
+      </>
+    );
+  }
+
   return (
     <>
       {debts?.slice(0, 3).map((debt, index) => {
@@ -41,7 +48,6 @@ export function CardDebtRecent({
           <CardContainer
             onClick={() => {
               setDebtId(debt.id);
-              setIsLoading(!debts ? true : false);
             }}
             key={debt.id}
             color={
